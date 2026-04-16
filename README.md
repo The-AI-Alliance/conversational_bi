@@ -1,12 +1,18 @@
 ![The AI Alliance banner](https://the-ai-alliance.github.io/assets/images/ai-alliance-logo-horiz-pos-blue-cmyk-trans.png)
 
-# README for Conversational BI
+# Conversational BI
 
 [Published Documentation](https://the-ai-alliance.github.io/conversational_bi/)
 
 This repo contains the code and documentation for the AI Alliance: Conversational BI.
 
-TODO - Describe this project
+"Conversational BI" is using GenAI and natural language to perform traditional BI lifecycle: key performance indicators (KPI) development, SQL query generation on a relational data warehouse to measure those KPIs, and the development of interactive visualizations and dashboards to present the KPIs.
+
+Normally, these actions would be done by a skilled analyst - one familiar with the enterprise data model, versed in SQL, and whatever commercial sofware (Microsoft PowerBI, Tableau, Grafana, etc) is used for presentation. 
+
+GenAI can be used to lower the barrier of entry to this - a non technical skilled analyst (or executive!) may be able to contribute more than the usual "Can you modify the report so that it..."
+
+This project proposes an open source GenaAI reference architecture to accomplish this, and several open source reference implementations to demonstrate it in action.
 
 See the [documentation](https://the-ai-alliance.github.io/conversational_bi/) for details. The rest of this README provides information for contributors, developers, and users of this project repo.
 
