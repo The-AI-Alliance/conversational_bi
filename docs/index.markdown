@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Start Here!
+title: Start Here
 nav_order: 10
 has_children: false
 language_tags: English

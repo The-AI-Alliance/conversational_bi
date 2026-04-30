@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Decision Support: Putting It All Together
-nav_order: 20
+title: Putting It All Together
+nav_order: 40
 has_children: false
+language_tags: English
 ---
 
 # Putting It All Together

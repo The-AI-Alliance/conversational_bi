@@ -1,31 +1,32 @@
 ---
 layout: default
-title: Decision Support: Future State
+title: BI - Future State
 nav_order: 30
 has_children: false
+language_tags: English
 ---
 
-# Possible Future Direction Enabled By GenAI
+# Possible Business Intelligence Future Direction Enabled By GenAI
 
 Many LLM based tools, such as Anthropic's Claude Code or Microsoft's CoPilot have demonstrated the ability to assist with coding. In this case, the coding is very specialized - transforming natural language KPI definitions into SQL using the enterprise data model as input. The following examples use Claude Desktop and the supported Opus4.6 model:
 
-![KPI Generation](./assets/images/ClaudeExample1.png)
+![KPI Generation]({{site.baseurl}}/assets/images/ClaudeExample1.png){: width="50%" height="50%" }
 
 Similarly, another very specialized set of GenAI assisted coding: Javascript D3 widgets generated using SQL views:
 
-![Visualization Generation](./assets/images/ClaudeExample2.png)
+![Visualization Generation]({{site.baseurl}}/assets/images/ClaudeExample2.png){: width="50%" height="50%" }
 
 ## Two Considerations
 
-Anybody that has ever worked in decision support has been confronted with the dreaded question "Why don't these two reports match?". The unpredictability of GenAI does not lend itself naturally to decision support, as the same KPI posed using natual language may generate different results at different times.
+Anybody that has ever worked in business intelligence has been confronted with the dreaded question "Why don't these two reports match?". The unpredictability of GenAI does not lend itself naturally to business intelligence, as the same KPI posed using natual language may generate different results at different times.
 
 To combat this, the idea of "ground truth" is introduced. Queries and views are developed with GenAI code assist, but are treated as version controlled artifacts that go through a normal review process. In the reference architecture, GitHub can be used as the truth repository, and a simple GenAI workflow can built around it:
 
-![Ground Truth](./docs/images/GroundTruth.png)
+![Ground Truth]({{site.baseurl}}/assets/images/GroundTruth.png){: width="50%" height="50%" }
 
 Example of the workflow in action:
 
-![Workflow](./docs/images/Workflow.png)
+![Workflow]({{site.baseurl}}/assets/images/Workflow.png){: width="50%" height="50%" }
 
 
 The second consideration: in a retail scenario, can natural language map to exact items or groups of items in the enterprise item hierarchy? An additional data structure - one that helps the LLM map natural language to actual items in the item hierarchy is needed, and will be added to this project demonstrating how this might be addressed in a production environment.
@@ -34,7 +35,7 @@ The second consideration: in a retail scenario, can natural language map to exac
 
 This leads to a reference architecture that anyone can build out using Amazon Web Services (AWS):
 
-![Reference Architecture](./docs/images/ReferenceArchitecture.png)
+![Reference Architecture]({{site.baseurl}}/assets/images/ReferenceArchitecture.png){: width="50%" height="50%" }
 
 A very inexpensive data warehouse can be simulated using AWS Athena - a serverless SQL engine that only incurrs a job based on how much data is being read. At idle, there is no charge.
 
