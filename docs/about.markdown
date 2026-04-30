@@ -3,6 +3,7 @@ layout: default
 title: About Us
 nav_order: 100
 has_children: false
+language_tags: English
 ---
 
 # About Conversational BI and The AI Alliance

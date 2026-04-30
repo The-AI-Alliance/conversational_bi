@@ -2,6 +2,7 @@
 layout: default
 title: Contributing
 nav_order: 90
+language_tags: English
 ---
 
 # How to Contribute to this Project
