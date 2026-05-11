@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-server"
+version = "0.1.0"
+description = "A simple MCP server with a hello_world tool"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.0.0"
+]
+
+[project.scripts]
+mcp-server = "server:main"
