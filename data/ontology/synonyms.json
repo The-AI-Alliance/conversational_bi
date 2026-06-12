@@ -1,0 +1,369 @@
+{
+  "_comment": "Lexical root synonym dictionary for SKU filtering — electronics edition. Keys are canonical English concept names. roots_en are truncated stems applied via substring matching against item_names.",
+  "LAPTOP": {
+    "roots_en": [
+      "laptop",
+      "notebook",
+      "ultrabook",
+      "chromebook"
+    ]
+  },
+  "CONVERTIBLE": {
+    "roots_en": [
+      "convertible",
+      "2-in-1",
+      "2 in 1",
+      "hybrid laptop"
+    ]
+  },
+  "TABLET": {
+    "roots_en": [
+      "tablet",
+      "ipad",
+      "slate"
+    ]
+  },
+  "DRAWING_TABLET": {
+    "roots_en": [
+      "drawing tablet",
+      "graphic tablet",
+      "pen tablet",
+      "wacom"
+    ]
+  },
+  "MONITOR": {
+    "roots_en": [
+      "monitor",
+      "display",
+      "screen"
+    ]
+  },
+  "SSD": {
+    "roots_en": [
+      "ssd",
+      "solid state"
+    ]
+  },
+  "HDD": {
+    "roots_en": [
+      "hdd",
+      "hard drive",
+      "hard disk"
+    ]
+  },
+  "FLASH_DRIVE": {
+    "roots_en": [
+      "flash drive",
+      "usb drive",
+      "thumb drive",
+      "pendrive",
+      "usb stick"
+    ]
+  },
+  "MEMORY_CARD": {
+    "roots_en": [
+      "microsd",
+      "sd card",
+      "memory card",
+      "tf card"
+    ]
+  },
+  "ROUTER": {
+    "roots_en": [
+      "router",
+      "wifi router",
+      "wireless router"
+    ]
+  },
+  "MESH_WIFI": {
+    "roots_en": [
+      "mesh",
+      "mesh wifi",
+      "mesh wi-fi"
+    ]
+  },
+  "NETWORK_SWITCH": {
+    "roots_en": [
+      "network switch",
+      "ethernet switch",
+      "lan switch"
+    ]
+  },
+  "SMARTPHONE": {
+    "roots_en": [
+      "smartphone",
+      "phone",
+      "cell phone",
+      "cellphone",
+      "mobile phone",
+      "iphone",
+      "android phone"
+    ]
+  },
+  "FOLDABLE_PHONE": {
+    "roots_en": [
+      "foldable",
+      "folding phone"
+    ]
+  },
+  "PHONE_CASE": {
+    "roots_en": [
+      "phone case",
+      "silicone case",
+      "leather case",
+      "rugged case",
+      "phone cover"
+    ]
+  },
+  "PHONE_ACCESSORY": {
+    "roots_en": [
+      "selfie stick",
+      "pop socket",
+      "popsocket",
+      "phone holder",
+      "phone grip"
+    ]
+  },
+  "POWER_BANK": {
+    "roots_en": [
+      "power bank",
+      "powerbank",
+      "portable charger",
+      "battery pack"
+    ]
+  },
+  "HEADPHONES": {
+    "roots_en": [
+      "headphone",
+      "headset",
+      "over-ear",
+      "on-ear"
+    ]
+  },
+  "EARBUDS": {
+    "roots_en": [
+      "earbud",
+      "earphone",
+      "in-ear",
+      "airpod",
+      "tws"
+    ]
+  },
+  "SPEAKER": {
+    "roots_en": [
+      "speaker",
+      "loudspeaker",
+      "bluetooth speaker",
+      "bookshelf",
+      "party speaker"
+    ]
+  },
+  "MICROPHONE": {
+    "roots_en": [
+      "microphone",
+      "mic",
+      "lavalier",
+      "shotgun mic",
+      "condenser"
+    ]
+  },
+  "TELEVISION": {
+    "roots_en": [
+      "tv ",
+      "television",
+      "led tv",
+      "oled",
+      "qled",
+      "smart tv"
+    ]
+  },
+  "STREAMING_DEVICE": {
+    "roots_en": [
+      "streaming stick",
+      "streaming box",
+      "chromecast",
+      "fire tv",
+      "roku",
+      "media player"
+    ]
+  },
+  "PROJECTOR": {
+    "roots_en": [
+      "projector",
+      "beamer"
+    ]
+  },
+  "SOUNDBAR": {
+    "roots_en": [
+      "soundbar",
+      "sound bar"
+    ]
+  },
+  "CONSOLE": {
+    "roots_en": [
+      "console",
+      "playstation",
+      "xbox",
+      "switch",
+      "steam deck",
+      "retro"
+    ]
+  },
+  "CONTROLLER": {
+    "roots_en": [
+      "controller",
+      "gamepad",
+      "joypad",
+      "joystick",
+      "arcade stick",
+      "racing wheel"
+    ]
+  },
+  "VR_HEADSET": {
+    "roots_en": [
+      "vr",
+      "virtual reality",
+      "quest",
+      "oculus"
+    ]
+  },
+  "VIDEO_GAME": {
+    "roots_en": [
+      "action game",
+      "sports game",
+      "adventure game",
+      "video game",
+      "edition"
+    ]
+  },
+  "SMART_SPEAKER": {
+    "roots_en": [
+      "smart speaker",
+      "smart display",
+      "echo",
+      "alexa",
+      "nest hub",
+      "homepod"
+    ]
+  },
+  "SMART_BULB": {
+    "roots_en": [
+      "smart bulb",
+      "smart light bulb"
+    ]
+  },
+  "SMART_LIGHT_STRIP": {
+    "roots_en": [
+      "light strip",
+      "led strip",
+      "smart strip"
+    ]
+  },
+  "SMART_LAMP": {
+    "roots_en": [
+      "smart lamp",
+      "smart desk lamp"
+    ]
+  },
+  "SECURITY_CAMERA": {
+    "roots_en": [
+      "security camera",
+      "surveillance camera",
+      "ip camera",
+      "cctv",
+      "indoor camera",
+      "outdoor camera"
+    ]
+  },
+  "VIDEO_DOORBELL": {
+    "roots_en": [
+      "video doorbell",
+      "smart doorbell",
+      "doorbell camera"
+    ]
+  },
+  "SMART_PLUG": {
+    "roots_en": [
+      "smart plug",
+      "smart outlet",
+      "smart socket",
+      "smart power strip"
+    ]
+  },
+  "CABLE": {
+    "roots_en": [
+      "cable",
+      "cord",
+      "usb-c cable",
+      "lightning cable"
+    ]
+  },
+  "WALL_CHARGER": {
+    "roots_en": [
+      "wall charger",
+      "power adapter",
+      "ac adapter",
+      "plug charger"
+    ]
+  },
+  "WIRELESS_CHARGER": {
+    "roots_en": [
+      "wireless charger",
+      "qi charger",
+      "charging pad",
+      "magsafe"
+    ]
+  },
+  "CAR_CHARGER": {
+    "roots_en": [
+      "car charger",
+      "car adapter",
+      "vehicle charger"
+    ]
+  },
+  "KEYBOARD": {
+    "roots_en": [
+      "keyboard"
+    ]
+  },
+  "MECHANICAL_KEYBOARD": {
+    "roots_en": [
+      "mechanical keyboard",
+      "mech keyboard"
+    ]
+  },
+  "MOUSE": {
+    "roots_en": [
+      "mouse",
+      "gaming mouse"
+    ]
+  },
+  "WEBCAM": {
+    "roots_en": [
+      "webcam",
+      "web camera"
+    ]
+  },
+  "LAPTOP_SLEEVE": {
+    "roots_en": [
+      "laptop sleeve",
+      "laptop pouch",
+      "neoprene sleeve"
+    ]
+  },
+  "LAPTOP_BACKPACK": {
+    "roots_en": [
+      "laptop backpack",
+      "computer backpack",
+      "tech backpack"
+    ]
+  },
+  "LAPTOP_BRIEFCASE": {
+    "roots_en": [
+      "laptop briefcase",
+      "laptop case",
+      "messenger bag",
+      "business bag"
+    ]
+  }
+}

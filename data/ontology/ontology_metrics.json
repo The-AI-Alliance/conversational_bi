@@ -1,0 +1,406 @@
+{
+  "ontology_version": "2.0",
+  "domain": "Retail Inventory & Sales Analytics",
+  "description": "Defines what the Conversational BI system knows and what it is allowed to compute.",
+
+  "metrics": {
+    "billing": {
+      "description": "Total monetary value generated from commercial sales activity. Accumulates over a period.",
+      "measure_type": "monetary",
+      "temporal_nature": "flow",
+      "aliases": [
+        "sales", "revenue", "turnover", "income", "billing amount", "billings",
+        "facturación", "ventas", "chiffre d'affaires"
+      ],
+      "supports_forecast": true,
+      "default_priority": 1,
+      "tags": ["financial", "commercial"]
+    },
+    "items_sold": {
+      "description": "Total number of units sold through commercial transactions. Accumulates over a period.",
+      "measure_type": "quantity",
+      "temporal_nature": "flow",
+      "aliases": [
+        "units sold", "quantity sold", "items sold", "volume sold",
+        "sell out", "unidades vendidas"
+      ],
+      "supports_forecast": true,
+      "default_priority": 2,
+      "tags": ["operational", "commercial"]
+    },
+    "items_received": {
+      "description": "Total number of units received from suppliers into warehouses. Accumulates over a period.",
+      "measure_type": "quantity",
+      "temporal_nature": "flow",
+      "aliases": [
+        "units received", "goods received", "receipts", "stock received",
+        "incoming units"
+      ],
+      "supports_forecast": false,
+      "default_priority": 4,
+      "tags": ["operational", "supply"]
+    },
+    "internal_consumption": {
+      "description": "Total number of units consumed internally for non-commercial purposes.",
+      "measure_type": "quantity",
+      "temporal_nature": "flow",
+      "aliases": [
+        "internal use", "consumed internally", "intern consumed",
+        "consumo interno"
+      ],
+      "supports_forecast": false,
+      "default_priority": 5,
+      "tags": ["operational", "internal"]
+    },
+    "stock": {
+      "description": "Number of units currently available in inventory. Represents a balance at a specific point in time, not a cumulative flow.",
+      "measure_type": "quantity",
+      "temporal_nature": "snapshot",
+      "aliases": [
+        "inventory", "stock level", "available units", "current stock",
+        "on hand", "existencias", "warehouse stock"
+      ],
+      "supports_forecast": true,
+      "default_priority": 3,
+      "tags": ["operational", "inventory"]
+    }
+  },
+
+  "dimensions": {
+    "time_calendar": {
+      "description": "Standard calendar periods for filtering and grouping.",
+      "type": "temporal",
+      "hierarchy": ["day", "week", "month", "quarter", "year"],
+      "temporal_direction": ["past", "present", "future"],
+      "supports_relative": true,
+      "relative_expressions": [
+        "last month", "this year", "previous quarter", "YTD",
+        "last 6 months", "2023 to 2025", "month by month", "next year"
+      ],
+      "aliases": ["date", "period", "when", "time"]
+    },
+    "time_season": {
+      "description": "Retail seasons tied to product collections.",
+      "type": "temporal",
+      "hierarchy": ["season", "season_year"],
+      "temporal_direction": ["past", "present", "future"],
+      "known_values": ["Spring", "Summer", "Winter", "Fall"],
+      "recurring": true,
+      "aliases": ["season", "collection", "temporada"]
+    },
+    "time_campaign": {
+      "description": "Named commercial events or promotional periods.",
+      "type": "temporal",
+      "hierarchy": null,
+      "temporal_direction": ["past", "present", "future"],
+      "recurring": true,
+      "examples": ["Black Friday", "kit launch", "end of season sale"],
+      "aliases": ["campaign", "promotion", "event", "campaña"]
+    },
+    "product_reference": {
+      "description": "Product identification across its hierarchy.",
+      "type": "categorical",
+      "hierarchy": ["size", "reference", "category", "department"],
+      "aliases": [
+        "product", "article", "item", "SKU", "reference", "ref",
+        "producto"
+      ]
+    },
+    "location_store": {
+      "description": "Physical retail store.",
+      "type": "categorical",
+      "hierarchy": ["store", "region"],
+      "aliases": ["store", "shop", "point of sale", "tienda"]
+    },
+    "location_warehouse": {
+      "description": "Physical warehouse.",
+      "type": "categorical",
+      "hierarchy": ["warehouse", "region"],
+      "aliases": ["warehouse", "depot", "almacén"]
+    },
+    "internal_department": {
+      "description": "Internal team that requested items for internal consumption.",
+      "type": "categorical",
+      "hierarchy": null,
+      "aliases": ["department", "team", "who requested", "departamento"]
+    },
+    "internal_reason": {
+      "description": "Purpose for internal consumption.",
+      "type": "categorical",
+      "hierarchy": null,
+      "known_values": [
+        "employee reward", "sponsorship", "client gift",
+        "promotional material", "not specified"
+      ],
+      "aliases": ["reason", "purpose", "motivo", "why"]
+    },
+    "commentary": {
+      "description": "Free-text notes attached to transactions. Not aggregatable.",
+      "type": "text",
+      "hierarchy": null,
+      "aliases": ["notes", "comments", "commentary", "what did the team write"]
+    }
+  },
+
+  "metric_dimension_compatibility": {
+    "billing": [
+      "time_calendar", "time_season", "time_campaign",
+      "product_reference", "location_store"
+    ],
+    "items_sold": [
+      "time_calendar", "time_season", "time_campaign",
+      "product_reference", "location_store"
+    ],
+    "items_received": [
+      "time_calendar", "time_season",
+      "product_reference", "location_warehouse"
+    ],
+    "internal_consumption": [
+      "time_calendar",
+      "product_reference", "location_warehouse",
+      "internal_department", "internal_reason", "commentary"
+    ],
+    "stock": [
+      "time_calendar",
+      "product_reference", "location_warehouse"
+    ]
+  },
+
+  "operations": {
+    "total": {
+      "description": "Compute the aggregate value of a metric within a given scope.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "snapshot_behavior": "Returns balance at the specified date or the latest available date. Never sums across periods.",
+      "accepts_input_from": [],
+      "trigger_phrases": ["total", "how much", "how many", "what is the", "give me"]
+    },
+    "breakdown": {
+      "description": "Split a metric across values of one or more dimensions.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "max_dimensions": 2,
+        "dimensions_must_be_compatible": true
+      },
+      "accepts_input_from": ["total", "period_over_period", "derived_ratio", "time_averaged"],
+      "trigger_phrases": ["by", "per", "across", "for each", "broken down by", "por"]
+    },
+    "comparison": {
+      "description": "Compare the same metric for two or more specific values on the same dimension.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "requires_same_dimension": true,
+        "min_values": 2,
+        "max_values": 5
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": ["compare", "vs", "versus", "between", "how does X compare"]
+    },
+    "period_over_period": {
+      "description": "Compare the same metric across two equivalent time periods.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "periods_must_be_same_type": true,
+        "requires_time_dimension": true
+      },
+      "output_modes": ["absolute_change", "percentage_change", "both"],
+      "accepts_input_from": [],
+      "trigger_phrases": [
+        "growth", "change", "variation", "vs last", "compared to",
+        "YoY", "MoM", "QoQ", "vs previous", "crecimiento"
+      ]
+    },
+    "trend": {
+      "description": "Show how a metric evolves over sequential time periods.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "requires_time_dimension": true
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": [
+        "trend", "evolution", "month by month", "over time",
+        "from X to Y", "how does it evolve", "tendencia"
+      ]
+    },
+    "ranking": {
+      "description": "Order breakdown values and return top or bottom N.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "requires_at_least_one_breakdown_dimension": true,
+        "limit_range": [1, 50]
+      },
+      "accepts_input_from": ["total", "period_over_period", "derived_ratio", "time_averaged"],
+      "trigger_phrases": [
+        "highest", "lowest", "top", "bottom", "best", "worst",
+        "which store had the most", "which month", "mayor"
+      ]
+    },
+    "derived_ratio": {
+      "description": "Combine two base metrics into a whitelisted business ratio.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "allowed_ratios": {
+        "average_selling_price": {
+          "formula": "billing / items_sold",
+          "description": "Average monetary value per unit sold.",
+          "aliases": ["average price", "unit price", "precio medio"]
+        },
+        "sell_through_rate_from_stock": {
+          "formula": "items_sold / stock",
+          "description": "Items sold as a percentage of stock available.",
+          "aliases": [
+            "sell-through rate", "sell-through", "sold percentage from stock",
+            "% sold from stock"
+          ]
+        },
+        "sell_through_rate_from_received": {
+          "formula": "items_sold / items_received",
+          "description": "Items sold as a percentage of items received.",
+          "aliases": ["sold vs received", "sell-through from receipts"]
+        },
+        "internal_consumption_share": {
+          "formula": "internal_consumption / (items_sold + internal_consumption)",
+          "description": "Share of total outflows going to internal use.",
+          "aliases": ["internal use rate", "% internal"]
+        }
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": ["average price", "rate", "percentage of", "ratio", "share"]
+    },
+    "time_averaged": {
+      "description": "Compute a metric's average across a unit of time within a period.",
+      "valid_for_temporal_nature": ["flow"],
+      "constraints": {
+        "requires_time_dimension": true
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": [
+        "average monthly", "average weekly", "average per month",
+        "monthly average", "media mensual"
+      ]
+    },
+    "pattern_detection": {
+      "description": "Identify trends, spikes, anomalies, seasonality, or consistency patterns.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "requires_time_dimension": true,
+        "minimum_periods": 3
+      },
+      "detection_types": [
+        "trend_direction", "spikes_and_anomalies", "seasonality",
+        "consistency", "acceleration_deceleration"
+      ],
+      "accepts_input_from": ["trend", "period_over_period"],
+      "trigger_phrases": [
+        "trends and spikes", "seasonal patterns", "most consistent",
+        "anomalies", "what patterns", "can be observed", "patrones"
+      ]
+    },
+    "forecast": {
+      "description": "Project a metric into the future based on historical patterns.",
+      "valid_for_temporal_nature": ["flow", "snapshot"],
+      "constraints": {
+        "requires_historical_data": true,
+        "metric_must_support_forecast": true,
+        "time_direction_must_be_future": true
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": [
+        "forecast", "prediction", "next winter", "next year",
+        "expected", "what will", "project", "previsión"
+      ]
+    },
+    "text_search": {
+      "description": "Search and retrieve free-text commentary.",
+      "valid_for_temporal_nature": ["flow"],
+      "constraints": {
+        "only_compatible_with": ["internal_consumption"],
+        "requires_dimension": "commentary"
+      },
+      "accepts_input_from": [],
+      "trigger_phrases": [
+        "commentary", "notes", "comments", "what did the team write",
+        "search", "consult notes", "comentarios"
+      ]
+    }
+  },
+
+  "multi_metric_support": {
+    "max_metrics_per_intent": 2,
+    "allowed_metric_pairs": [
+      ["billing", "items_sold"],
+      ["items_sold", "items_received"],
+      ["items_sold", "stock"],
+      ["items_received", "stock"]
+    ]
+  },
+
+  "composition_rules": {
+    "max_operations_per_query": 4,
+    "forbidden_combinations": [
+      {
+        "operations": ["forecast", "ranking"],
+        "reason": "Forecasting per dimension value and then ranking forecasts is beyond analytical scope."
+      },
+      {
+        "operations": ["period_over_period", "period_over_period"],
+        "reason": "Growth of a growth rate is too abstract."
+      },
+      {
+        "operations": ["text_search", "ranking"],
+        "reason": "Commentary cannot be ranked numerically."
+      },
+      {
+        "operations": ["text_search", "period_over_period"],
+        "reason": "Commentary cannot be compared across periods."
+      },
+      {
+        "operations": ["derived_ratio", "derived_ratio"],
+        "reason": "Chained ratios are difficult to interpret."
+      }
+    ]
+  },
+
+  "boundaries": {
+    "out_of_scope_concepts": [
+      {
+        "concept": "Customer identity and segmentation",
+        "keywords": ["customer", "client identity", "buyer", "who bought", "customer segment"],
+        "reason": "The system tracks what was sold, not who bought it."
+      },
+      {
+        "concept": "Margins, profitability, and costs",
+        "keywords": ["margin", "profit", "profitability", "cost", "cogs", "markup"],
+        "reason": "Only billing is available. No cost of goods or margin data."
+      },
+      {
+        "concept": "Supplier performance",
+        "keywords": ["supplier performance", "supplier rating", "delivery time", "lead time", "on-time delivery"],
+        "reason": "Only receipt quantities are tracked, not delivery timeliness or quality."
+      },
+      {
+        "concept": "Employee metrics",
+        "keywords": ["employee", "headcount", "productivity", "staff", "payroll", "satisfaction"],
+        "reason": "Headcount, productivity, and HR data are not in this system."
+      },
+      {
+        "concept": "Financial metrics beyond billing",
+        "keywords": ["cash flow", "receivables", "payments", "treasury", "ebitda"],
+        "reason": "Cash flow, receivables, and payments are not available."
+      },
+      {
+        "concept": "Traffic and conversion",
+        "keywords": ["traffic", "footfall", "visits", "conversion", "visitors"],
+        "reason": "No footfall or visit data."
+      },
+      {
+        "concept": "Marketing attribution",
+        "keywords": ["marketing", "attribution", "channel attribution", "ad spend", "roi"],
+        "reason": "Sales cannot be linked to specific marketing channels."
+      },
+      {
+        "concept": "External factors",
+        "keywords": ["weather", "competitor", "economic", "macro", "temperature"],
+        "reason": "Weather, competitors, and economic indicators are not tracked."
+      }
+    ]
+  }
+}
