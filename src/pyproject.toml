@@ -1,12 +1,37 @@
 [project]
-name = "retail-analytics-MCP-server"
-version = "0.1.0"
-description = "Retail analytics MCP Server Implementation"
-package-mode = false
-requires-python = ">=3.10,<4.0"
+name = "retail-electronics"
+version = "0.2.0"
+description = "Electronics Retail Analytics — 5-step MCP validation workflow"
+requires-python = ">=3.11"
 dependencies = [
-    "awswrangler>=3.14.0",
-    "boto3>=1.40.63",
-    "fastmcp>=2.6.1",
-    "pandas>=2.3.3",
+    "fastmcp>=2.0.0",
+    "openai>=1.0.0",
+    "duckdb>=1.0.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
 ]
+
+[project.scripts]
+retail-electronics = "retail_electronics.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.11"
+openai = ">=1.0.0"
+duckdb = ">=1.0.0"
+pydantic = ">=2.0.0"
+python-dotenv = ">=1.0.0"
+ipykernel = ">=7.2.0,<8"
+pip = ">=26.0.1,<27"
+numpy = ">=2.4.3,<3"
+pandas = ">=3.0.2,<4"
+
+[tool.pixi.pypi-dependencies]
+retail-electronics = { path = ".", editable = true }
