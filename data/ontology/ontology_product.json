@@ -1,0 +1,1196 @@
+{
+  "name": "Generated Electronics Retail Ontology",
+  "level": 0,
+  "children": {
+    "COMPUTING": {
+      "name": "COMPUTING",
+      "level": 1,
+      "children": {
+        "Laptops": {
+          "name": "Laptops",
+          "level": 2,
+          "children": {
+            "Laptop 13\" Ultrabook": {
+              "name": "Laptop 13\" Ultrabook",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Laptop 13\" Ultrabook 8GB/256GB SILVER",
+                "Laptop 13\" Ultrabook 16GB/512GB SILVER",
+                "Laptop 13\" Ultrabook 16GB/512GB GRAY",
+                "Laptop 13\" Ultrabook 16GB/1TB BLACK"
+              ]
+            },
+            "Laptop 15\" Notebook": {
+              "name": "Laptop 15\" Notebook",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Laptop 15\" Notebook 8GB/256GB SILVER",
+                "Laptop 15\" Notebook 16GB/512GB GRAY",
+                "Laptop 15\" Notebook 16GB/1TB BLACK"
+              ]
+            },
+            "Laptop 17\" Gaming": {
+              "name": "Laptop 17\" Gaming",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Laptop 17\" Gaming 16GB/1TB RTX 4060",
+                "Laptop 17\" Gaming 32GB/1TB RTX 4070",
+                "Laptop 17\" Gaming 32GB/2TB RTX 4080"
+              ]
+            },
+            "Convertible 2-in-1 14\"": {
+              "name": "Convertible 2-in-1 14\"",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Convertible 2-in-1 14\" 8GB/256GB SILVER",
+                "Convertible 2-in-1 14\" 16GB/512GB BLACK"
+              ]
+            },
+            "Chromebook 11\"": {
+              "name": "Chromebook 11\"",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Chromebook 11\" 4GB/64GB BLUE",
+                "Chromebook 11\" 4GB/64GB GRAY",
+                "Chromebook 11\" 8GB/128GB GRAY"
+              ]
+            }
+          },
+          "sku_count": 15
+        },
+        "Tablets": {
+          "name": "Tablets",
+          "level": 2,
+          "children": {
+            "Tablet 10\" Standard": {
+              "name": "Tablet 10\" Standard",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Tablet 10\" Standard 64GB WiFi BLACK",
+                "Tablet 10\" Standard 128GB WiFi SILVER",
+                "Tablet 10\" Standard 128GB WiFi+5G GOLD"
+              ]
+            },
+            "Tablet 11\" Pro": {
+              "name": "Tablet 11\" Pro",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Tablet 11\" Pro 128GB WiFi SILVER",
+                "Tablet 11\" Pro 256GB WiFi SPACE GRAY",
+                "Tablet 11\" Pro 512GB WiFi+5G SPACE GRAY"
+              ]
+            },
+            "Tablet 8\" Mini": {
+              "name": "Tablet 8\" Mini",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Tablet 8\" Mini 64GB BLACK",
+                "Tablet 8\" Mini 128GB BLUE",
+                "Tablet 8\" Mini 128GB PINK"
+              ]
+            },
+            "Drawing Tablet 13\"": {
+              "name": "Drawing Tablet 13\"",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Drawing Tablet 13\" Standard",
+                "Drawing Tablet 13\" Pro"
+              ]
+            }
+          },
+          "sku_count": 11
+        },
+        "Monitors": {
+          "name": "Monitors",
+          "level": 2,
+          "children": {
+            "Monitor 24\" Full HD": {
+              "name": "Monitor 24\" Full HD",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Monitor 24\" Full HD 60Hz",
+                "Monitor 24\" Full HD 75Hz"
+              ]
+            },
+            "Monitor 27\" 4K": {
+              "name": "Monitor 27\" 4K",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Monitor 27\" 4K 60Hz BLACK",
+                "Monitor 27\" 4K 60Hz WHITE",
+                "Monitor 27\" 4K 144Hz BLACK"
+              ]
+            },
+            "Monitor 32\" Ultrawide": {
+              "name": "Monitor 32\" Ultrawide",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Monitor 32\" Ultrawide 75Hz",
+                "Monitor 32\" Ultrawide 144Hz"
+              ]
+            },
+            "Gaming Monitor 27\" 144Hz": {
+              "name": "Gaming Monitor 27\" 144Hz",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Gaming Monitor 27\" 144Hz QHD",
+                "Gaming Monitor 27\" 240Hz QHD"
+              ]
+            }
+          },
+          "sku_count": 9
+        },
+        "Storage Devices": {
+          "name": "Storage Devices",
+          "level": 2,
+          "children": {
+            "External SSD": {
+              "name": "External SSD",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "External SSD 500GB",
+                "External SSD 1TB",
+                "External SSD 2TB",
+                "External SSD 4TB"
+              ]
+            },
+            "External HDD": {
+              "name": "External HDD",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "External HDD 1TB",
+                "External HDD 2TB",
+                "External HDD 4TB"
+              ]
+            },
+            "USB Flash Drive": {
+              "name": "USB Flash Drive",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "USB Flash Drive 32GB",
+                "USB Flash Drive 64GB",
+                "USB Flash Drive 128GB",
+                "USB Flash Drive 256GB"
+              ]
+            },
+            "microSD Card": {
+              "name": "microSD Card",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "microSD Card 64GB",
+                "microSD Card 128GB",
+                "microSD Card 256GB",
+                "microSD Card 512GB"
+              ]
+            }
+          },
+          "sku_count": 15
+        },
+        "Networking": {
+          "name": "Networking",
+          "level": 2,
+          "children": {
+            "Wi-Fi Router": {
+              "name": "Wi-Fi Router",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Wi-Fi Router AX1800",
+                "Wi-Fi Router AX3000",
+                "Wi-Fi Router AX6000"
+              ]
+            },
+            "Mesh Wi-Fi System": {
+              "name": "Mesh Wi-Fi System",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Mesh Wi-Fi System 2-Pack",
+                "Mesh Wi-Fi System 3-Pack"
+              ]
+            },
+            "Network Switch": {
+              "name": "Network Switch",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Network Switch 5-Port",
+                "Network Switch 8-Port",
+                "Network Switch 16-Port"
+              ]
+            }
+          },
+          "sku_count": 8
+        }
+      },
+      "sku_count": 58
+    },
+    "MOBILE": {
+      "name": "MOBILE",
+      "level": 1,
+      "children": {
+        "Smartphones": {
+          "name": "Smartphones",
+          "level": 2,
+          "children": {
+            "Smartphone 6.1\" Standard": {
+              "name": "Smartphone 6.1\" Standard",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Smartphone 6.1\" Standard 128GB BLACK",
+                "Smartphone 6.1\" Standard 128GB BLUE",
+                "Smartphone 6.1\" Standard 256GB WHITE",
+                "Smartphone 6.1\" Standard 256GB GREEN"
+              ]
+            },
+            "Smartphone 6.7\" Pro": {
+              "name": "Smartphone 6.7\" Pro",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Smartphone 6.7\" Pro 256GB BLACK",
+                "Smartphone 6.7\" Pro 256GB SILVER",
+                "Smartphone 6.7\" Pro 512GB GOLD",
+                "Smartphone 6.7\" Pro 1TB PURPLE"
+              ]
+            },
+            "Smartphone 5G Mid-range": {
+              "name": "Smartphone 5G Mid-range",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Smartphone 5G Mid-range 128GB BLACK",
+                "Smartphone 5G Mid-range 128GB BLUE",
+                "Smartphone 5G Mid-range 256GB MINT"
+              ]
+            },
+            "Smartphone Compact 5.4\"": {
+              "name": "Smartphone Compact 5.4\"",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Smartphone Compact 5.4\" 64GB BLACK",
+                "Smartphone Compact 5.4\" 128GB RED",
+                "Smartphone Compact 5.4\" 128GB WHITE"
+              ]
+            },
+            "Foldable Smartphone": {
+              "name": "Foldable Smartphone",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Foldable Smartphone 256GB BLACK",
+                "Foldable Smartphone 512GB CREAM"
+              ]
+            }
+          },
+          "sku_count": 16
+        },
+        "Mobile Accessories": {
+          "name": "Mobile Accessories",
+          "level": 2,
+          "children": {
+            "Phone Holder Car": {
+              "name": "Phone Holder Car",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Phone Holder Car Magnetic",
+                "Phone Holder Car Vent Clip",
+                "Phone Holder Car Dashboard Suction"
+              ]
+            },
+            "Selfie Stick": {
+              "name": "Selfie Stick",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Selfie Stick Wired BLACK",
+                "Selfie Stick Bluetooth BLACK",
+                "Selfie Stick Tripod WHITE"
+              ]
+            },
+            "Pop Socket": {
+              "name": "Pop Socket",
+              "level": 3,
+              "sku_count": 5,
+              "sample_items": [
+                "Pop Socket BLACK",
+                "Pop Socket RED",
+                "Pop Socket BLUE",
+                "Pop Socket PINK",
+                "Pop Socket SILVER"
+              ]
+            }
+          },
+          "sku_count": 11
+        },
+        "Phone Cases": {
+          "name": "Phone Cases",
+          "level": 2,
+          "children": {
+            "Silicone Case": {
+              "name": "Silicone Case",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Silicone Case BLACK",
+                "Silicone Case RED",
+                "Silicone Case BLUE",
+                "Silicone Case PINK"
+              ]
+            },
+            "Leather Case": {
+              "name": "Leather Case",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Leather Case BLACK",
+                "Leather Case BROWN"
+              ]
+            },
+            "Rugged Case": {
+              "name": "Rugged Case",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Rugged Case BLACK",
+                "Rugged Case GRAY",
+                "Rugged Case ORANGE"
+              ]
+            }
+          },
+          "sku_count": 9
+        },
+        "Power Banks": {
+          "name": "Power Banks",
+          "level": 2,
+          "children": {
+            "Power Bank": {
+              "name": "Power Bank",
+              "level": 3,
+              "sku_count": 5,
+              "sample_items": [
+                "Power Bank 5000mAh BLACK",
+                "Power Bank 10000mAh BLACK",
+                "Power Bank 10000mAh WHITE",
+                "Power Bank 20000mAh BLACK",
+                "Power Bank 20000mAh GRAY"
+              ]
+            },
+            "Wireless Power Bank": {
+              "name": "Wireless Power Bank",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Wireless Power Bank 5000mAh BLACK",
+                "Wireless Power Bank 10000mAh WHITE"
+              ]
+            },
+            "MagSafe Power Bank": {
+              "name": "MagSafe Power Bank",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "MagSafe Power Bank 5000mAh WHITE",
+                "MagSafe Power Bank 10000mAh BLACK"
+              ]
+            }
+          },
+          "sku_count": 9
+        }
+      },
+      "sku_count": 45
+    },
+    "AUDIO": {
+      "name": "AUDIO",
+      "level": 1,
+      "children": {
+        "Headphones": {
+          "name": "Headphones",
+          "level": 2,
+          "children": {
+            "Over-Ear Wireless Headphones": {
+              "name": "Over-Ear Wireless Headphones",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Over-Ear Wireless Headphones 30h Battery BLACK",
+                "Over-Ear Wireless Headphones 30h Battery WHITE",
+                "Over-Ear Wireless Headphones 50h Battery SILVER"
+              ]
+            },
+            "Over-Ear Wired Headphones": {
+              "name": "Over-Ear Wired Headphones",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Over-Ear Wired Headphones BLACK",
+                "Over-Ear Wired Headphones RED"
+              ]
+            },
+            "Noise-Cancelling Headphones": {
+              "name": "Noise-Cancelling Headphones",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Noise-Cancelling Headphones ANC BLACK",
+                "Noise-Cancelling Headphones ANC SILVER",
+                "Noise-Cancelling Headphones ANC+Transparency BEIGE"
+              ]
+            },
+            "Studio Headphones": {
+              "name": "Studio Headphones",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Studio Headphones 32 Ohm",
+                "Studio Headphones 80 Ohm",
+                "Studio Headphones 250 Ohm"
+              ]
+            }
+          },
+          "sku_count": 11
+        },
+        "Speakers": {
+          "name": "Speakers",
+          "level": 2,
+          "children": {
+            "Bluetooth Speaker Portable": {
+              "name": "Bluetooth Speaker Portable",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Bluetooth Speaker Portable 10W BLACK",
+                "Bluetooth Speaker Portable 10W BLUE",
+                "Bluetooth Speaker Portable 20W RED",
+                "Bluetooth Speaker Portable 40W GREEN"
+              ]
+            },
+            "Bookshelf Speakers Pair": {
+              "name": "Bookshelf Speakers Pair",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Bookshelf Speakers Pair 50W BLACK",
+                "Bookshelf Speakers Pair 100W WALNUT"
+              ]
+            },
+            "Party Speaker": {
+              "name": "Party Speaker",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Party Speaker 200W",
+                "Party Speaker 500W",
+                "Party Speaker 1000W"
+              ]
+            }
+          },
+          "sku_count": 9
+        },
+        "Earbuds": {
+          "name": "Earbuds",
+          "level": 2,
+          "children": {
+            "True Wireless Earbuds": {
+              "name": "True Wireless Earbuds",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "True Wireless Earbuds BLACK",
+                "True Wireless Earbuds WHITE",
+                "True Wireless Earbuds BLUE"
+              ]
+            },
+            "True Wireless Earbuds ANC": {
+              "name": "True Wireless Earbuds ANC",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "True Wireless Earbuds ANC BLACK",
+                "True Wireless Earbuds ANC WHITE"
+              ]
+            },
+            "Sport Earbuds": {
+              "name": "Sport Earbuds",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Sport Earbuds IPX4 BLACK",
+                "Sport Earbuds IPX7 RED",
+                "Sport Earbuds IPX7 GREEN"
+              ]
+            },
+            "Wired Earbuds 3.5mm": {
+              "name": "Wired Earbuds 3.5mm",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Wired Earbuds 3.5mm BLACK",
+                "Wired Earbuds 3.5mm WHITE"
+              ]
+            }
+          },
+          "sku_count": 10
+        },
+        "Microphones": {
+          "name": "Microphones",
+          "level": 2,
+          "children": {
+            "USB Condenser Microphone": {
+              "name": "USB Condenser Microphone",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "USB Condenser Microphone Cardioid",
+                "USB Condenser Microphone Multi-Pattern"
+              ]
+            },
+            "Lavalier Microphone": {
+              "name": "Lavalier Microphone",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Lavalier Microphone Wired 3.5mm",
+                "Lavalier Microphone Wireless 2.4GHz"
+              ]
+            },
+            "Shotgun Microphone": {
+              "name": "Shotgun Microphone",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Shotgun Microphone Compact",
+                "Shotgun Microphone Professional"
+              ]
+            }
+          },
+          "sku_count": 6
+        }
+      },
+      "sku_count": 36
+    },
+    "TV & VIDEO": {
+      "name": "TV & VIDEO",
+      "level": 1,
+      "children": {
+        "Televisions": {
+          "name": "Televisions",
+          "level": 2,
+          "children": {
+            "TV LED": {
+              "name": "TV LED",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "TV LED 32\" HD",
+                "TV LED 43\" Full HD",
+                "TV LED 43\" 4K",
+                "TV LED 55\" 4K"
+              ]
+            },
+            "TV OLED": {
+              "name": "TV OLED",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "TV OLED 48\" 4K",
+                "TV OLED 55\" 4K",
+                "TV OLED 65\" 4K"
+              ]
+            },
+            "TV QLED": {
+              "name": "TV QLED",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "TV QLED 55\" 4K",
+                "TV QLED 65\" 4K",
+                "TV QLED 75\" 8K"
+              ]
+            }
+          },
+          "sku_count": 10
+        },
+        "Streaming Devices": {
+          "name": "Streaming Devices",
+          "level": 2,
+          "children": {
+            "Streaming Stick": {
+              "name": "Streaming Stick",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Streaming Stick Full HD",
+                "Streaming Stick 4K",
+                "Streaming Stick 4K HDR"
+              ]
+            },
+            "Streaming Box": {
+              "name": "Streaming Box",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Streaming Box 4K",
+                "Streaming Box 4K Premium",
+                "Streaming Box 8K"
+              ]
+            }
+          },
+          "sku_count": 6
+        },
+        "Projectors": {
+          "name": "Projectors",
+          "level": 2,
+          "children": {
+            "Home Cinema Projector": {
+              "name": "Home Cinema Projector",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Home Cinema Projector 1080p 2500 Lumens",
+                "Home Cinema Projector 4K 3000 Lumens",
+                "Home Cinema Projector 4K 4500 Lumens"
+              ]
+            },
+            "Mini Portable Projector": {
+              "name": "Mini Portable Projector",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Mini Portable Projector 720p 200 Lumens",
+                "Mini Portable Projector 1080p 500 Lumens"
+              ]
+            },
+            "Short Throw Projector": {
+              "name": "Short Throw Projector",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Short Throw Projector 1080p 2000 Lumens",
+                "Short Throw Projector 4K 3500 Lumens"
+              ]
+            }
+          },
+          "sku_count": 7
+        },
+        "Soundbars": {
+          "name": "Soundbars",
+          "level": 2,
+          "children": {
+            "Soundbar Compact": {
+              "name": "Soundbar Compact",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Soundbar Compact 2.0 80W",
+                "Soundbar Compact 2.1 120W"
+              ]
+            },
+            "Soundbar Premium": {
+              "name": "Soundbar Premium",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Soundbar Premium 3.1 300W",
+                "Soundbar Premium 5.1 500W",
+                "Soundbar Premium 7.1.4 Dolby Atmos 800W"
+              ]
+            }
+          },
+          "sku_count": 5
+        }
+      },
+      "sku_count": 28
+    },
+    "GAMING": {
+      "name": "GAMING",
+      "level": 1,
+      "children": {
+        "Consoles": {
+          "name": "Consoles",
+          "level": 2,
+          "children": {
+            "Console Next-Gen Standard": {
+              "name": "Console Next-Gen Standard",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Console Next-Gen Standard 512GB Digital",
+                "Console Next-Gen Standard 1TB Disc",
+                "Console Next-Gen Standard 1TB Disc WHITE"
+              ]
+            },
+            "Console Handheld": {
+              "name": "Console Handheld",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Console Handheld 64GB BLACK",
+                "Console Handheld 256GB RED",
+                "Console Handheld 512GB OLED BLUE"
+              ]
+            },
+            "Retro Mini Console": {
+              "name": "Retro Mini Console",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Retro Mini Console 8-bit",
+                "Retro Mini Console 16-bit"
+              ]
+            }
+          },
+          "sku_count": 8
+        },
+        "Controllers": {
+          "name": "Controllers",
+          "level": 2,
+          "children": {
+            "Wireless Controller Standard": {
+              "name": "Wireless Controller Standard",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Wireless Controller Standard BLACK",
+                "Wireless Controller Standard WHITE",
+                "Wireless Controller Standard BLUE",
+                "Wireless Controller Standard RED"
+              ]
+            },
+            "Pro Controller": {
+              "name": "Pro Controller",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Pro Controller BLACK",
+                "Pro Controller Customizable"
+              ]
+            },
+            "Arcade Stick": {
+              "name": "Arcade Stick",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Arcade Stick 8-Button BLACK",
+                "Arcade Stick 8-Button RED"
+              ]
+            },
+            "Racing Wheel": {
+              "name": "Racing Wheel",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Racing Wheel 270° Entry",
+                "Racing Wheel 900° Pro",
+                "Racing Wheel 1080° Force Feedback"
+              ]
+            }
+          },
+          "sku_count": 11
+        },
+        "VR Headsets": {
+          "name": "VR Headsets",
+          "level": 2,
+          "children": {
+            "VR Headset Standalone": {
+              "name": "VR Headset Standalone",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "VR Headset Standalone 128GB",
+                "VR Headset Standalone 256GB",
+                "VR Headset Standalone 512GB Pro"
+              ]
+            },
+            "VR Headset PC": {
+              "name": "VR Headset PC",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "VR Headset PC 90Hz",
+                "VR Headset PC 120Hz"
+              ]
+            }
+          },
+          "sku_count": 5
+        },
+        "Video Games": {
+          "name": "Video Games",
+          "level": 2,
+          "children": {
+            "Action Game": {
+              "name": "Action Game",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Action Game Standard Edition",
+                "Action Game Deluxe Edition",
+                "Action Game Collector's Edition"
+              ]
+            },
+            "Sports Game": {
+              "name": "Sports Game",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Sports Game Standard Edition",
+                "Sports Game Ultimate Edition"
+              ]
+            },
+            "Adventure Game": {
+              "name": "Adventure Game",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Adventure Game Standard Edition",
+                "Adventure Game Deluxe Edition"
+              ]
+            }
+          },
+          "sku_count": 7
+        }
+      },
+      "sku_count": 31
+    },
+    "SMART HOME": {
+      "name": "SMART HOME",
+      "level": 1,
+      "children": {
+        "Smart Speakers": {
+          "name": "Smart Speakers",
+          "level": 2,
+          "children": {
+            "Smart Speaker Mini": {
+              "name": "Smart Speaker Mini",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Smart Speaker Mini BLACK",
+                "Smart Speaker Mini WHITE",
+                "Smart Speaker Mini BLUE"
+              ]
+            },
+            "Smart Display": {
+              "name": "Smart Display",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Smart Display 5\" BLACK",
+                "Smart Display 8\" WHITE",
+                "Smart Display 10\" BLACK"
+              ]
+            },
+            "Smart Speaker Premium": {
+              "name": "Smart Speaker Premium",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Smart Speaker Premium 360° BLACK",
+                "Smart Speaker Premium 360° GRAY"
+              ]
+            }
+          },
+          "sku_count": 8
+        },
+        "Smart Lighting": {
+          "name": "Smart Lighting",
+          "level": 2,
+          "children": {
+            "Smart Bulb": {
+              "name": "Smart Bulb",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Smart Bulb 9W White",
+                "Smart Bulb 9W Color",
+                "Smart Bulb 12W Color",
+                "Smart Bulb Pack 4 9W Color"
+              ]
+            },
+            "Smart Light Strip": {
+              "name": "Smart Light Strip",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Smart Light Strip 2m RGB",
+                "Smart Light Strip 5m RGB",
+                "Smart Light Strip 5m RGBIC"
+              ]
+            },
+            "Smart Lamp Desk": {
+              "name": "Smart Lamp Desk",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Smart Lamp Desk WHITE",
+                "Smart Lamp Desk BLACK"
+              ]
+            }
+          },
+          "sku_count": 9
+        },
+        "Security Cameras": {
+          "name": "Security Cameras",
+          "level": 2,
+          "children": {
+            "Indoor Security Camera": {
+              "name": "Indoor Security Camera",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Indoor Security Camera 1080p",
+                "Indoor Security Camera 2K",
+                "Indoor Security Camera 2K Pan/Tilt"
+              ]
+            },
+            "Outdoor Security Camera": {
+              "name": "Outdoor Security Camera",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Outdoor Security Camera 1080p Wired",
+                "Outdoor Security Camera 2K Battery",
+                "Outdoor Security Camera 4K Solar"
+              ]
+            },
+            "Video Doorbell": {
+              "name": "Video Doorbell",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Video Doorbell 1080p Wired",
+                "Video Doorbell 2K Battery"
+              ]
+            }
+          },
+          "sku_count": 8
+        },
+        "Smart Plugs": {
+          "name": "Smart Plugs",
+          "level": 2,
+          "children": {
+            "Smart Plug": {
+              "name": "Smart Plug",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Smart Plug Wi-Fi 16A",
+                "Smart Plug Wi-Fi Energy Monitor",
+                "Smart Plug Zigbee 16A",
+                "Smart Plug Pack 4 Wi-Fi"
+              ]
+            },
+            "Smart Power Strip": {
+              "name": "Smart Power Strip",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Smart Power Strip 3-Outlet USB",
+                "Smart Power Strip 6-Outlet Surge"
+              ]
+            }
+          },
+          "sku_count": 6
+        }
+      },
+      "sku_count": 31
+    },
+    "ACCESSORIES": {
+      "name": "ACCESSORIES",
+      "level": 1,
+      "children": {
+        "Chargers & Cables": {
+          "name": "Chargers & Cables",
+          "level": 2,
+          "children": {
+            "USB-C Cable": {
+              "name": "USB-C Cable",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "USB-C Cable 1m BLACK",
+                "USB-C Cable 1m WHITE",
+                "USB-C Cable 2m BLACK",
+                "USB-C Cable 2m Braided RED"
+              ]
+            },
+            "Lightning Cable": {
+              "name": "Lightning Cable",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Lightning Cable 1m WHITE",
+                "Lightning Cable 2m WHITE",
+                "Lightning Cable 1m Braided BLACK"
+              ]
+            },
+            "Wall Charger": {
+              "name": "Wall Charger",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Wall Charger 20W",
+                "Wall Charger 45W",
+                "Wall Charger 65W GaN",
+                "Wall Charger 100W GaN Dual-Port"
+              ]
+            },
+            "Wireless Charger": {
+              "name": "Wireless Charger",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Wireless Charger Pad 10W BLACK",
+                "Wireless Charger Pad 15W WHITE",
+                "Wireless Charger Stand 15W BLACK"
+              ]
+            },
+            "Car Charger": {
+              "name": "Car Charger",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Car Charger 30W Dual-Port",
+                "Car Charger 65W USB-C PD"
+              ]
+            }
+          },
+          "sku_count": 16
+        },
+        "Keyboards & Mice": {
+          "name": "Keyboards & Mice",
+          "level": 2,
+          "children": {
+            "Wireless Keyboard": {
+              "name": "Wireless Keyboard",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Wireless Keyboard Compact BLACK",
+                "Wireless Keyboard Full-Size WHITE",
+                "Wireless Keyboard Ergonomic SILVER"
+              ]
+            },
+            "Mechanical Keyboard": {
+              "name": "Mechanical Keyboard",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Mechanical Keyboard TKL Red Switch RGB",
+                "Mechanical Keyboard Full-Size Blue Switch RGB",
+                "Mechanical Keyboard 60% Brown Switch RGB"
+              ]
+            },
+            "Wireless Mouse": {
+              "name": "Wireless Mouse",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Wireless Mouse 1600 DPI BLACK",
+                "Wireless Mouse 2400 DPI WHITE",
+                "Wireless Mouse Ergonomic Vertical GRAY"
+              ]
+            },
+            "Gaming Mouse": {
+              "name": "Gaming Mouse",
+              "level": 3,
+              "sku_count": 3,
+              "sample_items": [
+                "Gaming Mouse 8000 DPI RGB",
+                "Gaming Mouse 16000 DPI Wireless",
+                "Gaming Mouse 25600 DPI Pro"
+              ]
+            }
+          },
+          "sku_count": 12
+        },
+        "Webcams": {
+          "name": "Webcams",
+          "level": 2,
+          "children": {
+            "Webcam": {
+              "name": "Webcam",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Webcam 720p",
+                "Webcam 1080p",
+                "Webcam 1080p Autofocus",
+                "Webcam 4K"
+              ]
+            },
+            "Streaming Webcam": {
+              "name": "Streaming Webcam",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Streaming Webcam 1080p 60fps",
+                "Streaming Webcam 4K 30fps"
+              ]
+            }
+          },
+          "sku_count": 6
+        },
+        "Laptop Bags & Sleeves": {
+          "name": "Laptop Bags & Sleeves",
+          "level": 2,
+          "children": {
+            "Laptop Sleeve": {
+              "name": "Laptop Sleeve",
+              "level": 3,
+              "sku_count": 4,
+              "sample_items": [
+                "Laptop Sleeve 13\" GRAY",
+                "Laptop Sleeve 13\" BLACK",
+                "Laptop Sleeve 15\" NAVY",
+                "Laptop Sleeve 16\" BLACK"
+              ]
+            },
+            "Laptop Backpack": {
+              "name": "Laptop Backpack",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Laptop Backpack 15\" BLACK",
+                "Laptop Backpack 17\" Anti-Theft GRAY"
+              ]
+            },
+            "Laptop Briefcase": {
+              "name": "Laptop Briefcase",
+              "level": 3,
+              "sku_count": 2,
+              "sample_items": [
+                "Laptop Briefcase 14\" BLACK",
+                "Laptop Briefcase 15\" Leather BROWN"
+              ]
+            }
+          },
+          "sku_count": 8
+        }
+      },
+      "sku_count": 42
+    }
+  },
+  "sku_count": 271,
+  "total_sold_skus": 271
+}

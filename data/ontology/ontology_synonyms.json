@@ -1,0 +1,1332 @@
+{
+  "name": "Generated Electronics Retail Ontology",
+  "synonyms": [],
+  "children": {
+    "COMPUTING": {
+      "name": "COMPUTING",
+      "synonyms": [
+        "computing",
+        "computers",
+        "computer",
+        "pc",
+        "personal computers",
+        "it",
+        "informatics"
+      ],
+      "children": {
+        "Laptops": {
+          "name": "Laptops",
+          "synonyms": [
+            "laptop",
+            "laptops",
+            "notebook",
+            "notebooks",
+            "portable computer",
+            "ultraportable",
+            "ultrabook"
+          ],
+          "children": {
+            "Laptop 13\" Ultrabook": {
+              "name": "Laptop 13\" Ultrabook",
+              "synonyms": [
+                "ultrabook",
+                "13 inch laptop",
+                "13\" laptop",
+                "thin and light",
+                "portable laptop"
+              ]
+            },
+            "Laptop 15\" Notebook": {
+              "name": "Laptop 15\" Notebook",
+              "synonyms": [
+                "15 inch laptop",
+                "15\" laptop",
+                "notebook",
+                "standard laptop"
+              ]
+            },
+            "Laptop 17\" Gaming": {
+              "name": "Laptop 17\" Gaming",
+              "synonyms": [
+                "gaming laptop",
+                "17 inch gaming laptop",
+                "17\" gaming laptop",
+                "rtx laptop",
+                "gpu laptop"
+              ]
+            },
+            "Convertible 2-in-1 14\"": {
+              "name": "Convertible 2-in-1 14\"",
+              "synonyms": [
+                "2-in-1",
+                "convertible",
+                "hybrid laptop",
+                "flip laptop",
+                "touchscreen laptop"
+              ]
+            },
+            "Chromebook 11\"": {
+              "name": "Chromebook 11\"",
+              "synonyms": [
+                "chromebook",
+                "chrome os laptop",
+                "11 inch chromebook"
+              ]
+            }
+          }
+        },
+        "Tablets": {
+          "name": "Tablets",
+          "synonyms": [
+            "tablet",
+            "tablets",
+            "slate",
+            "ipad",
+            "android tablet"
+          ],
+          "children": {
+            "Tablet 10\" Standard": {
+              "name": "Tablet 10\" Standard",
+              "synonyms": [
+                "10 inch tablet",
+                "10\" tablet",
+                "android tablet",
+                "standard tablet"
+              ]
+            },
+            "Tablet 11\" Pro": {
+              "name": "Tablet 11\" Pro",
+              "synonyms": [
+                "pro tablet",
+                "11 inch tablet",
+                "11\" tablet",
+                "ipad pro",
+                "tablet pro"
+              ]
+            },
+            "Tablet 8\" Mini": {
+              "name": "Tablet 8\" Mini",
+              "synonyms": [
+                "mini tablet",
+                "8 inch tablet",
+                "8\" tablet",
+                "compact tablet",
+                "ipad mini"
+              ]
+            },
+            "Drawing Tablet 13\"": {
+              "name": "Drawing Tablet 13\"",
+              "synonyms": [
+                "drawing tablet",
+                "graphic tablet",
+                "wacom",
+                "pen tablet",
+                "digital drawing pad"
+              ]
+            }
+          }
+        },
+        "Monitors": {
+          "name": "Monitors",
+          "synonyms": [
+            "monitor",
+            "monitors",
+            "display",
+            "screen",
+            "computer screen",
+            "lcd",
+            "led display"
+          ],
+          "children": {
+            "Monitor 24\" Full HD": {
+              "name": "Monitor 24\" Full HD",
+              "synonyms": [
+                "24 inch monitor",
+                "24\" monitor",
+                "1080p monitor",
+                "fhd monitor"
+              ]
+            },
+            "Monitor 27\" 4K": {
+              "name": "Monitor 27\" 4K",
+              "synonyms": [
+                "27 inch monitor",
+                "27\" 4k monitor",
+                "uhd monitor",
+                "4k display"
+              ]
+            },
+            "Monitor 32\" Ultrawide": {
+              "name": "Monitor 32\" Ultrawide",
+              "synonyms": [
+                "ultrawide monitor",
+                "32 inch ultrawide",
+                "wide screen monitor",
+                "21:9 monitor"
+              ]
+            },
+            "Gaming Monitor 27\" 144Hz": {
+              "name": "Gaming Monitor 27\" 144Hz",
+              "synonyms": [
+                "gaming monitor",
+                "144hz monitor",
+                "high refresh monitor",
+                "esports monitor"
+              ]
+            }
+          }
+        },
+        "Storage Devices": {
+          "name": "Storage Devices",
+          "synonyms": [
+            "storage",
+            "drives",
+            "external storage",
+            "memory storage",
+            "data storage"
+          ],
+          "children": {
+            "External SSD": {
+              "name": "External SSD",
+              "synonyms": [
+                "external ssd",
+                "portable ssd",
+                "solid state drive",
+                "external solid state"
+              ]
+            },
+            "External HDD": {
+              "name": "External HDD",
+              "synonyms": [
+                "external hdd",
+                "portable hard drive",
+                "hard disk drive",
+                "external hard drive"
+              ]
+            },
+            "USB Flash Drive": {
+              "name": "USB Flash Drive",
+              "synonyms": [
+                "usb stick",
+                "flash drive",
+                "thumb drive",
+                "pendrive",
+                "usb drive",
+                "memory stick"
+              ]
+            },
+            "microSD Card": {
+              "name": "microSD Card",
+              "synonyms": [
+                "microsd",
+                "micro sd card",
+                "sd card",
+                "memory card",
+                "tf card"
+              ]
+            }
+          }
+        },
+        "Networking": {
+          "name": "Networking",
+          "synonyms": [
+            "networking",
+            "network",
+            "wifi equipment",
+            "internet equipment",
+            "router gear"
+          ],
+          "children": {
+            "Wi-Fi Router": {
+              "name": "Wi-Fi Router",
+              "synonyms": [
+                "router",
+                "wifi router",
+                "wireless router",
+                "internet router"
+              ]
+            },
+            "Mesh Wi-Fi System": {
+              "name": "Mesh Wi-Fi System",
+              "synonyms": [
+                "mesh wifi",
+                "mesh router",
+                "whole-home wifi",
+                "wifi mesh"
+              ]
+            },
+            "Network Switch": {
+              "name": "Network Switch",
+              "synonyms": [
+                "switch",
+                "ethernet switch",
+                "lan switch",
+                "network hub"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "MOBILE": {
+      "name": "MOBILE",
+      "synonyms": [
+        "mobile",
+        "mobile phones",
+        "phones",
+        "telephony",
+        "cellular",
+        "communication",
+        "smartphones"
+      ],
+      "children": {
+        "Smartphones": {
+          "name": "Smartphones",
+          "synonyms": [
+            "smartphone",
+            "smartphones",
+            "mobile phone",
+            "cell phone",
+            "cellphone",
+            "mobile",
+            "phone",
+            "android phone",
+            "iphone"
+          ],
+          "children": {
+            "Smartphone 6.1\" Standard": {
+              "name": "Smartphone 6.1\" Standard",
+              "synonyms": [
+                "standard smartphone",
+                "6.1 inch phone",
+                "6.1\" smartphone",
+                "regular phone"
+              ]
+            },
+            "Smartphone 6.7\" Pro": {
+              "name": "Smartphone 6.7\" Pro",
+              "synonyms": [
+                "pro smartphone",
+                "6.7 inch phone",
+                "6.7\" smartphone",
+                "flagship phone",
+                "premium smartphone"
+              ]
+            },
+            "Smartphone 5G Mid-range": {
+              "name": "Smartphone 5G Mid-range",
+              "synonyms": [
+                "5g phone",
+                "mid-range smartphone",
+                "mid-tier phone",
+                "affordable 5g phone"
+              ]
+            },
+            "Smartphone Compact 5.4\"": {
+              "name": "Smartphone Compact 5.4\"",
+              "synonyms": [
+                "compact phone",
+                "small phone",
+                "mini smartphone",
+                "5.4\" phone"
+              ]
+            },
+            "Foldable Smartphone": {
+              "name": "Foldable Smartphone",
+              "synonyms": [
+                "foldable",
+                "foldable phone",
+                "folding phone",
+                "fold",
+                "flip phone smart"
+              ]
+            }
+          }
+        },
+        "Mobile Accessories": {
+          "name": "Mobile Accessories",
+          "synonyms": [
+            "phone accessories",
+            "mobile accessories",
+            "smartphone accessories"
+          ],
+          "children": {
+            "Phone Holder Car": {
+              "name": "Phone Holder Car",
+              "synonyms": [
+                "car phone holder",
+                "car mount",
+                "phone mount car",
+                "vehicle phone holder",
+                "dashboard mount"
+              ]
+            },
+            "Selfie Stick": {
+              "name": "Selfie Stick",
+              "synonyms": [
+                "selfie stick",
+                "selfie pole",
+                "phone stick",
+                "monopod"
+              ]
+            },
+            "Pop Socket": {
+              "name": "Pop Socket",
+              "synonyms": [
+                "popsocket",
+                "phone grip",
+                "phone holder grip",
+                "pop grip"
+              ]
+            }
+          }
+        },
+        "Phone Cases": {
+          "name": "Phone Cases",
+          "synonyms": [
+            "case",
+            "cases",
+            "phone case",
+            "phone cover",
+            "cover",
+            "sleeve",
+            "shell",
+            "protector"
+          ],
+          "children": {
+            "Silicone Case": {
+              "name": "Silicone Case",
+              "synonyms": [
+                "silicone case",
+                "rubber case",
+                "soft case",
+                "silicon case"
+              ]
+            },
+            "Leather Case": {
+              "name": "Leather Case",
+              "synonyms": [
+                "leather case",
+                "leather cover",
+                "leather phone case",
+                "premium case"
+              ]
+            },
+            "Rugged Case": {
+              "name": "Rugged Case",
+              "synonyms": [
+                "rugged case",
+                "tough case",
+                "heavy duty case",
+                "shockproof case",
+                "armor case"
+              ]
+            }
+          }
+        },
+        "Power Banks": {
+          "name": "Power Banks",
+          "synonyms": [
+            "power bank",
+            "power banks",
+            "portable charger",
+            "battery pack",
+            "external battery",
+            "powerbank"
+          ],
+          "children": {
+            "Power Bank": {
+              "name": "Power Bank",
+              "synonyms": [
+                "power bank",
+                "portable charger",
+                "battery pack",
+                "external battery"
+              ]
+            },
+            "Wireless Power Bank": {
+              "name": "Wireless Power Bank",
+              "synonyms": [
+                "wireless power bank",
+                "qi power bank",
+                "wireless portable charger"
+              ]
+            },
+            "MagSafe Power Bank": {
+              "name": "MagSafe Power Bank",
+              "synonyms": [
+                "magsafe power bank",
+                "magnetic power bank",
+                "magsafe battery"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "AUDIO": {
+      "name": "AUDIO",
+      "synonyms": [
+        "audio",
+        "sound",
+        "hi-fi",
+        "hifi",
+        "music",
+        "audio equipment"
+      ],
+      "children": {
+        "Headphones": {
+          "name": "Headphones",
+          "synonyms": [
+            "headphones",
+            "headphone",
+            "headset",
+            "cans",
+            "over-ear headphones",
+            "on-ear headphones"
+          ],
+          "children": {
+            "Over-Ear Wireless Headphones": {
+              "name": "Over-Ear Wireless Headphones",
+              "synonyms": [
+                "over-ear headphones",
+                "wireless headphones",
+                "bluetooth headphones",
+                "wireless cans"
+              ]
+            },
+            "Over-Ear Wired Headphones": {
+              "name": "Over-Ear Wired Headphones",
+              "synonyms": [
+                "wired headphones",
+                "over-ear wired",
+                "cabled headphones"
+              ]
+            },
+            "Noise-Cancelling Headphones": {
+              "name": "Noise-Cancelling Headphones",
+              "synonyms": [
+                "anc headphones",
+                "noise cancelling headphones",
+                "noise cancellation",
+                "active noise cancelling"
+              ]
+            },
+            "Studio Headphones": {
+              "name": "Studio Headphones",
+              "synonyms": [
+                "studio headphones",
+                "professional headphones",
+                "monitor headphones",
+                "recording headphones"
+              ]
+            }
+          }
+        },
+        "Speakers": {
+          "name": "Speakers",
+          "synonyms": [
+            "speaker",
+            "speakers",
+            "loudspeaker",
+            "audio speaker"
+          ],
+          "children": {
+            "Bluetooth Speaker Portable": {
+              "name": "Bluetooth Speaker Portable",
+              "synonyms": [
+                "portable speaker",
+                "bluetooth speaker",
+                "wireless speaker",
+                "outdoor speaker"
+              ]
+            },
+            "Bookshelf Speakers Pair": {
+              "name": "Bookshelf Speakers Pair",
+              "synonyms": [
+                "bookshelf speakers",
+                "stereo speakers",
+                "hi-fi speakers",
+                "passive speakers"
+              ]
+            },
+            "Party Speaker": {
+              "name": "Party Speaker",
+              "synonyms": [
+                "party speaker",
+                "loud speaker",
+                "dj speaker",
+                "big speaker"
+              ]
+            }
+          }
+        },
+        "Earbuds": {
+          "name": "Earbuds",
+          "synonyms": [
+            "earbuds",
+            "earphones",
+            "in-ear",
+            "in-ear monitors",
+            "iems",
+            "buds",
+            "airpods"
+          ],
+          "children": {
+            "True Wireless Earbuds": {
+              "name": "True Wireless Earbuds",
+              "synonyms": [
+                "true wireless earbuds",
+                "tws",
+                "wireless earbuds",
+                "bluetooth earbuds"
+              ]
+            },
+            "True Wireless Earbuds ANC": {
+              "name": "True Wireless Earbuds ANC",
+              "synonyms": [
+                "anc earbuds",
+                "noise cancelling earbuds",
+                "tws anc"
+              ]
+            },
+            "Sport Earbuds": {
+              "name": "Sport Earbuds",
+              "synonyms": [
+                "sport earbuds",
+                "workout earbuds",
+                "fitness earbuds",
+                "running earbuds",
+                "waterproof earbuds"
+              ]
+            },
+            "Wired Earbuds 3.5mm": {
+              "name": "Wired Earbuds 3.5mm",
+              "synonyms": [
+                "wired earbuds",
+                "3.5mm earbuds",
+                "jack earbuds",
+                "aux earbuds"
+              ]
+            }
+          }
+        },
+        "Microphones": {
+          "name": "Microphones",
+          "synonyms": [
+            "microphone",
+            "microphones",
+            "mic",
+            "mics"
+          ],
+          "children": {
+            "USB Condenser Microphone": {
+              "name": "USB Condenser Microphone",
+              "synonyms": [
+                "usb mic",
+                "condenser microphone",
+                "podcast microphone",
+                "streaming mic"
+              ]
+            },
+            "Lavalier Microphone": {
+              "name": "Lavalier Microphone",
+              "synonyms": [
+                "lavalier",
+                "lapel mic",
+                "clip-on microphone",
+                "lav mic"
+              ]
+            },
+            "Shotgun Microphone": {
+              "name": "Shotgun Microphone",
+              "synonyms": [
+                "shotgun mic",
+                "directional microphone",
+                "boom microphone",
+                "video mic"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "TV & VIDEO": {
+      "name": "TV & VIDEO",
+      "synonyms": [
+        "tv",
+        "television",
+        "televisions",
+        "video",
+        "home cinema",
+        "home theater",
+        "home theatre",
+        "entertainment"
+      ],
+      "children": {
+        "Televisions": {
+          "name": "Televisions",
+          "synonyms": [
+            "tv",
+            "television",
+            "televisions",
+            "smart tv",
+            "screen"
+          ],
+          "children": {
+            "TV LED": {
+              "name": "TV LED",
+              "synonyms": [
+                "led tv",
+                "led television",
+                "lcd tv"
+              ]
+            },
+            "TV OLED": {
+              "name": "TV OLED",
+              "synonyms": [
+                "oled tv",
+                "oled television",
+                "oled screen"
+              ]
+            },
+            "TV QLED": {
+              "name": "TV QLED",
+              "synonyms": [
+                "qled tv",
+                "qled television",
+                "quantum dot tv"
+              ]
+            }
+          }
+        },
+        "Streaming Devices": {
+          "name": "Streaming Devices",
+          "synonyms": [
+            "streaming device",
+            "streaming devices",
+            "media player",
+            "media streamer",
+            "chromecast",
+            "fire tv",
+            "apple tv",
+            "roku"
+          ],
+          "children": {
+            "Streaming Stick": {
+              "name": "Streaming Stick",
+              "synonyms": [
+                "streaming stick",
+                "tv stick",
+                "fire stick",
+                "chromecast",
+                "roku stick"
+              ]
+            },
+            "Streaming Box": {
+              "name": "Streaming Box",
+              "synonyms": [
+                "streaming box",
+                "tv box",
+                "apple tv",
+                "android tv box",
+                "media box"
+              ]
+            }
+          }
+        },
+        "Projectors": {
+          "name": "Projectors",
+          "synonyms": [
+            "projector",
+            "projectors",
+            "beamer",
+            "video projector"
+          ],
+          "children": {
+            "Home Cinema Projector": {
+              "name": "Home Cinema Projector",
+              "synonyms": [
+                "home cinema projector",
+                "home theater projector",
+                "movie projector",
+                "4k projector"
+              ]
+            },
+            "Mini Portable Projector": {
+              "name": "Mini Portable Projector",
+              "synonyms": [
+                "mini projector",
+                "portable projector",
+                "pico projector",
+                "pocket projector"
+              ]
+            },
+            "Short Throw Projector": {
+              "name": "Short Throw Projector",
+              "synonyms": [
+                "short throw projector",
+                "ultra short throw",
+                "ust projector"
+              ]
+            }
+          }
+        },
+        "Soundbars": {
+          "name": "Soundbars",
+          "synonyms": [
+            "soundbar",
+            "soundbars",
+            "sound bar",
+            "tv speaker"
+          ],
+          "children": {
+            "Soundbar Compact": {
+              "name": "Soundbar Compact",
+              "synonyms": [
+                "compact soundbar",
+                "small soundbar",
+                "mini soundbar"
+              ]
+            },
+            "Soundbar Premium": {
+              "name": "Soundbar Premium",
+              "synonyms": [
+                "premium soundbar",
+                "dolby atmos soundbar",
+                "surround soundbar",
+                "high-end soundbar"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "GAMING": {
+      "name": "GAMING",
+      "synonyms": [
+        "gaming",
+        "games",
+        "video games",
+        "console gaming",
+        "esports",
+        "videogames"
+      ],
+      "children": {
+        "Consoles": {
+          "name": "Consoles",
+          "synonyms": [
+            "console",
+            "consoles",
+            "gaming console",
+            "game console",
+            "video game console"
+          ],
+          "children": {
+            "Console Next-Gen Standard": {
+              "name": "Console Next-Gen Standard",
+              "synonyms": [
+                "next-gen console",
+                "playstation",
+                "xbox",
+                "ps5",
+                "xbox series",
+                "current-gen console"
+              ]
+            },
+            "Console Handheld": {
+              "name": "Console Handheld",
+              "synonyms": [
+                "handheld console",
+                "portable console",
+                "switch",
+                "steam deck",
+                "handheld gaming"
+              ]
+            },
+            "Retro Mini Console": {
+              "name": "Retro Mini Console",
+              "synonyms": [
+                "retro console",
+                "mini console",
+                "classic console",
+                "nostalgia console"
+              ]
+            }
+          }
+        },
+        "Controllers": {
+          "name": "Controllers",
+          "synonyms": [
+            "controller",
+            "controllers",
+            "gamepad",
+            "joypad",
+            "joystick",
+            "game controller"
+          ],
+          "children": {
+            "Wireless Controller Standard": {
+              "name": "Wireless Controller Standard",
+              "synonyms": [
+                "wireless controller",
+                "standard controller",
+                "gamepad",
+                "bluetooth controller"
+              ]
+            },
+            "Pro Controller": {
+              "name": "Pro Controller",
+              "synonyms": [
+                "pro controller",
+                "elite controller",
+                "professional gamepad",
+                "premium controller"
+              ]
+            },
+            "Arcade Stick": {
+              "name": "Arcade Stick",
+              "synonyms": [
+                "arcade stick",
+                "fight stick",
+                "arcade controller",
+                "fighting stick"
+              ]
+            },
+            "Racing Wheel": {
+              "name": "Racing Wheel",
+              "synonyms": [
+                "racing wheel",
+                "steering wheel",
+                "sim racing wheel",
+                "driving wheel"
+              ]
+            }
+          }
+        },
+        "VR Headsets": {
+          "name": "VR Headsets",
+          "synonyms": [
+            "vr",
+            "virtual reality",
+            "vr headset",
+            "vr headsets",
+            "headset",
+            "oculus",
+            "quest"
+          ],
+          "children": {
+            "VR Headset Standalone": {
+              "name": "VR Headset Standalone",
+              "synonyms": [
+                "standalone vr",
+                "quest",
+                "wireless vr",
+                "all-in-one vr"
+              ]
+            },
+            "VR Headset PC": {
+              "name": "VR Headset PC",
+              "synonyms": [
+                "pc vr",
+                "tethered vr",
+                "vr for pc",
+                "wired vr"
+              ]
+            }
+          }
+        },
+        "Video Games": {
+          "name": "Video Games",
+          "synonyms": [
+            "video game",
+            "video games",
+            "game",
+            "games",
+            "title",
+            "software"
+          ],
+          "children": {
+            "Action Game": {
+              "name": "Action Game",
+              "synonyms": [
+                "action game",
+                "action title",
+                "shooter game",
+                "adventure action"
+              ]
+            },
+            "Sports Game": {
+              "name": "Sports Game",
+              "synonyms": [
+                "sports game",
+                "football game",
+                "soccer game",
+                "fifa",
+                "sports title"
+              ]
+            },
+            "Adventure Game": {
+              "name": "Adventure Game",
+              "synonyms": [
+                "adventure game",
+                "rpg",
+                "open world game",
+                "story game"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SMART HOME": {
+      "name": "SMART HOME",
+      "synonyms": [
+        "smart home",
+        "home automation",
+        "iot",
+        "connected home",
+        "domotics",
+        "smart devices"
+      ],
+      "children": {
+        "Smart Speakers": {
+          "name": "Smart Speakers",
+          "synonyms": [
+            "smart speaker",
+            "smart speakers",
+            "voice assistant",
+            "alexa",
+            "google home",
+            "echo",
+            "homepod"
+          ],
+          "children": {
+            "Smart Speaker Mini": {
+              "name": "Smart Speaker Mini",
+              "synonyms": [
+                "mini smart speaker",
+                "echo dot",
+                "google nest mini",
+                "compact smart speaker"
+              ]
+            },
+            "Smart Display": {
+              "name": "Smart Display",
+              "synonyms": [
+                "smart display",
+                "echo show",
+                "nest hub",
+                "smart screen"
+              ]
+            },
+            "Smart Speaker Premium": {
+              "name": "Smart Speaker Premium",
+              "synonyms": [
+                "premium smart speaker",
+                "homepod",
+                "echo studio",
+                "high-end smart speaker"
+              ]
+            }
+          }
+        },
+        "Smart Lighting": {
+          "name": "Smart Lighting",
+          "synonyms": [
+            "smart lighting",
+            "smart light",
+            "smart lights",
+            "smart bulb",
+            "smart lamp",
+            "connected lighting"
+          ],
+          "children": {
+            "Smart Bulb": {
+              "name": "Smart Bulb",
+              "synonyms": [
+                "smart bulb",
+                "smart light bulb",
+                "wifi bulb",
+                "connected bulb",
+                "hue bulb"
+              ]
+            },
+            "Smart Light Strip": {
+              "name": "Smart Light Strip",
+              "synonyms": [
+                "light strip",
+                "led strip",
+                "smart strip",
+                "rgb strip"
+              ]
+            },
+            "Smart Lamp Desk": {
+              "name": "Smart Lamp Desk",
+              "synonyms": [
+                "smart desk lamp",
+                "smart lamp",
+                "desk lamp",
+                "led desk lamp"
+              ]
+            }
+          }
+        },
+        "Security Cameras": {
+          "name": "Security Cameras",
+          "synonyms": [
+            "security camera",
+            "security cameras",
+            "surveillance camera",
+            "cctv",
+            "ip camera",
+            "cam"
+          ],
+          "children": {
+            "Indoor Security Camera": {
+              "name": "Indoor Security Camera",
+              "synonyms": [
+                "indoor camera",
+                "indoor security cam",
+                "home camera",
+                "baby monitor cam"
+              ]
+            },
+            "Outdoor Security Camera": {
+              "name": "Outdoor Security Camera",
+              "synonyms": [
+                "outdoor camera",
+                "outdoor security cam",
+                "weatherproof camera"
+              ]
+            },
+            "Video Doorbell": {
+              "name": "Video Doorbell",
+              "synonyms": [
+                "video doorbell",
+                "smart doorbell",
+                "ring doorbell",
+                "doorbell camera"
+              ]
+            }
+          }
+        },
+        "Smart Plugs": {
+          "name": "Smart Plugs",
+          "synonyms": [
+            "smart plug",
+            "smart plugs",
+            "smart outlet",
+            "smart socket",
+            "connected plug"
+          ],
+          "children": {
+            "Smart Plug": {
+              "name": "Smart Plug",
+              "synonyms": [
+                "smart plug",
+                "wifi plug",
+                "smart outlet",
+                "connected plug"
+              ]
+            },
+            "Smart Power Strip": {
+              "name": "Smart Power Strip",
+              "synonyms": [
+                "smart power strip",
+                "smart surge protector",
+                "wifi power strip"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ACCESSORIES": {
+      "name": "ACCESSORIES",
+      "synonyms": [
+        "accessories",
+        "peripherals",
+        "add-ons",
+        "extras",
+        "computer accessories"
+      ],
+      "children": {
+        "Chargers & Cables": {
+          "name": "Chargers & Cables",
+          "synonyms": [
+            "charger",
+            "chargers",
+            "cable",
+            "cables",
+            "cord",
+            "wire",
+            "power cable",
+            "charging cable"
+          ],
+          "children": {
+            "USB-C Cable": {
+              "name": "USB-C Cable",
+              "synonyms": [
+                "usb-c cable",
+                "type-c cable",
+                "usb c cable",
+                "type c cable"
+              ]
+            },
+            "Lightning Cable": {
+              "name": "Lightning Cable",
+              "synonyms": [
+                "lightning cable",
+                "iphone cable",
+                "apple cable"
+              ]
+            },
+            "Wall Charger": {
+              "name": "Wall Charger",
+              "synonyms": [
+                "wall charger",
+                "power adapter",
+                "ac adapter",
+                "plug charger"
+              ]
+            },
+            "Wireless Charger": {
+              "name": "Wireless Charger",
+              "synonyms": [
+                "wireless charger",
+                "qi charger",
+                "charging pad",
+                "induction charger"
+              ]
+            },
+            "Car Charger": {
+              "name": "Car Charger",
+              "synonyms": [
+                "car charger",
+                "car adapter",
+                "12v charger",
+                "vehicle charger"
+              ]
+            }
+          }
+        },
+        "Keyboards & Mice": {
+          "name": "Keyboards & Mice",
+          "synonyms": [
+            "keyboard",
+            "mouse",
+            "keyboards and mice",
+            "input devices",
+            "computer peripherals"
+          ],
+          "children": {
+            "Wireless Keyboard": {
+              "name": "Wireless Keyboard",
+              "synonyms": [
+                "wireless keyboard",
+                "bluetooth keyboard",
+                "cordless keyboard"
+              ]
+            },
+            "Mechanical Keyboard": {
+              "name": "Mechanical Keyboard",
+              "synonyms": [
+                "mechanical keyboard",
+                "mech keyboard",
+                "gaming keyboard",
+                "rgb keyboard"
+              ]
+            },
+            "Wireless Mouse": {
+              "name": "Wireless Mouse",
+              "synonyms": [
+                "wireless mouse",
+                "bluetooth mouse",
+                "cordless mouse"
+              ]
+            },
+            "Gaming Mouse": {
+              "name": "Gaming Mouse",
+              "synonyms": [
+                "gaming mouse",
+                "high dpi mouse",
+                "esports mouse"
+              ]
+            }
+          }
+        },
+        "Webcams": {
+          "name": "Webcams",
+          "synonyms": [
+            "webcam",
+            "webcams",
+            "web camera",
+            "computer camera"
+          ],
+          "children": {
+            "Webcam": {
+              "name": "Webcam",
+              "synonyms": [
+                "webcam",
+                "web camera",
+                "video camera",
+                "computer cam"
+              ]
+            },
+            "Streaming Webcam": {
+              "name": "Streaming Webcam",
+              "synonyms": [
+                "streaming webcam",
+                "twitch webcam",
+                "content creator webcam",
+                "4k webcam"
+              ]
+            }
+          }
+        },
+        "Laptop Bags & Sleeves": {
+          "name": "Laptop Bags & Sleeves",
+          "synonyms": [
+            "laptop bag",
+            "laptop sleeve",
+            "laptop case",
+            "computer bag",
+            "briefcase",
+            "backpack",
+            "carrying case"
+          ],
+          "children": {
+            "Laptop Sleeve": {
+              "name": "Laptop Sleeve",
+              "synonyms": [
+                "laptop sleeve",
+                "laptop pouch",
+                "neoprene sleeve",
+                "computer sleeve"
+              ]
+            },
+            "Laptop Backpack": {
+              "name": "Laptop Backpack",
+              "synonyms": [
+                "laptop backpack",
+                "computer backpack",
+                "tech backpack",
+                "work backpack"
+              ]
+            },
+            "Laptop Briefcase": {
+              "name": "Laptop Briefcase",
+              "synonyms": [
+                "laptop briefcase",
+                "laptop case",
+                "business bag",
+                "messenger bag"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

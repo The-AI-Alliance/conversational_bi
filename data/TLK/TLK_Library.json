@@ -1,0 +1,412 @@
+{
+  "library": [
+    {
+      "id": "1",
+      "natural_language": "What is the total billing for the item <ITEM_NAME> for the month of <MM> <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>') AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "2",
+      "natural_language": "What is the total billing for the item <ITEM_NAME> in <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "3",
+      "natural_language": "What is the total retail billing for <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "4",
+      "natural_language": "What is the total retail billing for <MM> <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>') AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "5",
+      "natural_language": "What is the monthly billing trend for <YYYY>?",
+      "sql": "WITH inv AS (SELECT STRFTIME(i.doc_date, '%m') AS month, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY STRFTIME(i.doc_date, '%m')), ret AS (SELECT STRFTIME(r.doc_date, '%m') AS month, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY STRFTIME(r.doc_date, '%m')) SELECT COALESCE(inv.month, ret.month) AS month, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.month = ret.month ORDER BY month",
+      "is_verified": "yes"
+    },
+    {
+      "id": "6",
+      "natural_language": "What is the billing breakdown by store for <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.ocr_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY i.ocr_code), ret AS (SELECT r.ocr_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY r.ocr_code) SELECT CASE COALESCE(inv.ocr_code, ret.ocr_code) WHEN 'STR01' THEN 'Downtown Store' WHEN 'STR02' THEN 'Mall Store' WHEN 'STR03' THEN 'North Store' WHEN 'STR04' THEN 'Outlet' END AS store, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.ocr_code = ret.ocr_code ORDER BY net_billing DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "7",
+      "natural_language": "What are the top 10 items by billing in <MM> <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>' GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>' GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.item_code = ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code, ret.item_code) = o.item_code ORDER BY net_billing DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "8",
+      "natural_language": "What are the top 10 items by billing in <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.item_code = ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code, ret.item_code) = o.item_code ORDER BY net_billing DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "9",
+      "natural_language": "What is the average selling price of <ITEM_NAME> in <MM> <YYYY>?",
+      "sql": "SELECT ROUND(((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>')) / NULLIF((SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>'), 0), 2) AS avg_selling_price",
+      "is_verified": "yes"
+    },
+    {
+      "id": "10",
+      "natural_language": "What is the billing for <ITEM_NAME> by store in <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.ocr_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY i.ocr_code), ret AS (SELECT r.ocr_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY r.ocr_code) SELECT CASE COALESCE(inv.ocr_code, ret.ocr_code) WHEN 'STR01' THEN 'Downtown Store' WHEN 'STR02' THEN 'Mall Store' WHEN 'STR03' THEN 'North Store' WHEN 'STR04' THEN 'Outlet' END AS store, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.ocr_code = ret.ocr_code ORDER BY net_billing DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "11",
+      "natural_language": "How many units of <ITEM_NAME> were sold in <MM> <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>') AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "12",
+      "natural_language": "How many units of <ITEM_NAME> were sold in <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "13",
+      "natural_language": "What are the top 10 items by quantity sold in <MM> <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' AND STRFTIME(i.doc_date, '%m') = '<MM>' GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>' GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.item_code = ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code, ret.item_code) = o.item_code ORDER BY net_qty_sold DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "14",
+      "natural_language": "How many units of <ITEM_NAME> were sold per store in <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.ocr_code, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY i.ocr_code), ret AS (SELECT r.ocr_code, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY r.ocr_code) SELECT CASE COALESCE(inv.ocr_code, ret.ocr_code) WHEN 'STR01' THEN 'Downtown Store' WHEN 'STR02' THEN 'Mall Store' WHEN 'STR03' THEN 'North Store' WHEN 'STR04' THEN 'Outlet' END AS store, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.ocr_code = ret.ocr_code ORDER BY net_qty_sold DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "15",
+      "natural_language": "What is the monthly sales trend for <ITEM_NAME> in <YYYY>?",
+      "sql": "WITH inv AS (SELECT STRFTIME(i.doc_date, '%m') AS month, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY STRFTIME(i.doc_date, '%m')), ret AS (SELECT STRFTIME(r.doc_date, '%m') AS month, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY STRFTIME(r.doc_date, '%m')) SELECT COALESCE(inv.month, ret.month) AS month, ROUND(COALESCE(inv.total, 0) - COALESCE(ret.total, 0), 2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.month = ret.month ORDER BY month",
+      "is_verified": "yes"
+    },
+    {
+      "id": "16",
+      "natural_language": "What is the total number of units sold across all retail in <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "17",
+      "natural_language": "What is the current stock of <ITEM_NAME>?",
+      "sql": "SELECT o.item_name, SUM(s.on_hand) AS total_on_hand FROM retail2.master_stock_oitw s JOIN retail2.master_articles_oitm o ON s.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' GROUP BY o.item_name",
+      "is_verified": "yes"
+    },
+    {
+      "id": "18",
+      "natural_language": "What is the stock of <ITEM_NAME> by warehouse?",
+      "sql": "SELECT o.item_name, w.whs_name, s.on_hand FROM retail2.master_stock_oitw s JOIN retail2.master_articles_oitm o ON s.item_code = o.item_code JOIN retail2.master_warehouses_owhs w ON s.whs_code = w.whs_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND s.on_hand > 0 ORDER BY s.on_hand DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "19",
+      "natural_language": "Which items have low stock?",
+      "sql": "SELECT o.item_name, SUM(s.on_hand) AS total_on_hand FROM retail2.master_stock_oitw s JOIN retail2.master_articles_oitm o ON s.item_code = o.item_code WHERE o.sell_item = 'Y' AND o.valid_for = 'Y' AND o.item_name NOT LIKE '%(DO NOT USE)%' GROUP BY o.item_name HAVING SUM(s.on_hand) BETWEEN 1 AND 10 ORDER BY total_on_hand ASC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "20",
+      "natural_language": "What is the total stock on hand by warehouse?",
+      "sql": "SELECT w.whs_name, SUM(s.on_hand) AS total_on_hand FROM retail2.master_stock_oitw s JOIN retail2.master_warehouses_owhs w ON s.whs_code = w.whs_code WHERE w.inactive != 'Y' GROUP BY w.whs_name ORDER BY total_on_hand DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "21",
+      "natural_language": "How many units of <ITEM_NAME> have been received overall?",
+      "sql": "SELECT COALESCE(SUM(m.in_qty), 0) AS total_received FROM retail2.master_inventory_log_oinm m JOIN retail2.master_articles_oitm o ON m.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND m.trans_type = 20",
+      "is_verified": "yes"
+    },
+    {
+      "id": "22",
+      "natural_language": "How many units of <ITEM_NAME> were received in <MM> <YYYY>?",
+      "sql": "SELECT COALESCE(SUM(m.in_qty), 0) AS total_received FROM retail2.master_inventory_log_oinm m JOIN retail2.master_articles_oitm o ON m.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND m.trans_type = 20 AND STRFTIME(m.doc_date, '%Y') = '<YYYY>' AND STRFTIME(m.doc_date, '%m') = '<MM>'",
+      "is_verified": "yes"
+    },
+    {
+      "id": "23",
+      "natural_language": "What are the stock transfers for <ITEM_NAME> in <YYYY>?",
+      "sql": "SELECT m.warehouse, SUM(m.in_qty) AS transferred_in, SUM(m.out_qty) AS transferred_out FROM retail2.master_inventory_log_oinm m JOIN retail2.master_articles_oitm o ON m.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND m.trans_type = 67 AND STRFTIME(m.doc_date, '%Y') = '<YYYY>' GROUP BY m.warehouse ORDER BY transferred_in DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "24",
+      "natural_language": "What are the returns for <ITEM_NAME> in <MM> <YYYY>?",
+      "sql": "SELECT SUM(r.quantity) AS returned_qty, ROUND(SUM(r.line_total), 2) AS returned_amount FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' AND STRFTIME(r.doc_date, '%m') = '<MM>'",
+      "is_verified": "yes"
+    },
+    {
+      "id": "25",
+      "natural_language": "What are the top 10 most returned items in <YYYY>?",
+      "sql": "SELECT o.item_name, SUM(r.quantity) AS returned_qty, ROUND(SUM(r.line_total), 2) AS returned_amount FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY o.item_name ORDER BY returned_qty DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "26",
+      "natural_language": "How many units of <ITEM_NAME> were sold between <YYYY> and <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>') AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "27",
+      "natural_language": "What was the total billing for <ITEM_NAME> between <YYYY> and <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>') AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "28",
+      "natural_language": "How did units sold for <ITEM_NAME> change from <YYYY_START> to <YYYY_END>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY_END>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY_END>') - ((SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY_START>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY_START>')) AS units_change",
+      "is_verified": "yes"
+    },
+    {
+      "id": "29",
+      "natural_language": "How many units of <ITEM_NAME> were sold per year between <YYYY_START> and <YYYY_END>?",
+      "sql": "WITH inv AS (SELECT STRFTIME(i.doc_date, '%Y') AS year, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>' GROUP BY STRFTIME(i.doc_date, '%Y')), ret AS (SELECT STRFTIME(r.doc_date, '%Y') AS year, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') BETWEEN '<YYYY_START>' AND '<YYYY_END>' GROUP BY STRFTIME(r.doc_date, '%Y')) SELECT COALESCE(inv.year, ret.year) AS year, COALESCE(inv.total, 0) - COALESCE(ret.total, 0) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.year = ret.year ORDER BY year",
+      "is_verified": "yes"
+    },
+    {
+      "id": "32",
+      "natural_language": "How did billing for <ITEM_NAME> change from <YYYY_START> to <YYYY_END>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY_END>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY_END>') - ((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY_START>') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY_START>')) AS billing_change",
+      "is_verified": "yes"
+    },
+    {
+      "id": "33",
+      "natural_language": "How many units of <ITEM_NAME> were sold last year?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "34",
+      "natural_language": "How many units of <ITEM_NAME> were sold in the last year?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "35",
+      "natural_language": "What is the total billing for <ITEM_NAME> last year?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "36",
+      "natural_language": "What is the total billing for <ITEM_NAME> in the last year?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "37",
+      "natural_language": "What is the total number of units sold across all retail last year?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "38",
+      "natural_language": "What is the total billing across all retail last year?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)) - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) - 1 AS VARCHAR)), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "39",
+      "natural_language": "How many units of <ITEM_NAME> have been sold this year?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "40",
+      "natural_language": "What is the total billing for <ITEM_NAME> this year?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "41",
+      "natural_language": "What is the total number of units sold across all retail this year?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "42",
+      "natural_language": "What is the total billing across all retail this year?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)) - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = CAST(date_part('year', current_date) AS VARCHAR)), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "43",
+      "natural_language": "How many units of <ITEM_NAME> were sold in the last <N> months?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND CAST(STRFTIME(i.doc_date, '%Y-%m-%d') AS DATE) >= CURRENT_DATE - INTERVAL '<N> months') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND CAST(STRFTIME(r.doc_date, '%Y-%m-%d') AS DATE) >= CURRENT_DATE - INTERVAL '<N> months') AS net_units_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "44",
+      "natural_language": "What is the total billing for <ITEM_NAME> in the last <N> months?",
+      "sql": "SELECT ROUND((SELECT COALESCE(SUM(i.line_total), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND CAST(STRFTIME(i.doc_date, '%Y-%m-%d') AS DATE) >= CURRENT_DATE - INTERVAL '<N> months') - (SELECT COALESCE(SUM(r.line_total), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND CAST(STRFTIME(r.doc_date, '%Y-%m-%d') AS DATE) >= CURRENT_DATE - INTERVAL '<N> months'), 2) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "45",
+      "natural_language": "How many items did sell in <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS items_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "46",
+      "natural_language": "How many items were sold in <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity), 0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>') - (SELECT COALESCE(SUM(r.quantity), 0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>') AS items_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "47",
+      "natural_language": "What are the top 10 items by quantity sold in <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y') = '<YYYY>' GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code = o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y') = '<YYYY>' GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.item_code=ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code,ret.item_code)=o.item_code ORDER BY net_qty_sold DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "48",
+      "natural_language": "What is the monthly billing trend for <ITEM_NAME> in <YYYY>?",
+      "sql": "WITH inv AS (SELECT STRFTIME(i.doc_date, '%m') AS month, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' GROUP BY STRFTIME(i.doc_date, '%m')), ret AS (SELECT STRFTIME(r.doc_date, '%m') AS month, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' GROUP BY STRFTIME(r.doc_date, '%m')) SELECT COALESCE(inv.month,ret.month) AS month, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.month=ret.month ORDER BY month",
+      "is_verified": "yes"
+    },
+    {
+      "id": "49",
+      "natural_language": "What is the monthly units trend for all retail in <YYYY>?",
+      "sql": "WITH inv AS (SELECT STRFTIME(i.doc_date, '%m') AS month, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' GROUP BY STRFTIME(i.doc_date, '%m')), ret AS (SELECT STRFTIME(r.doc_date, '%m') AS month, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' GROUP BY STRFTIME(r.doc_date, '%m')) SELECT COALESCE(inv.month,ret.month) AS month, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.month=ret.month ORDER BY month",
+      "is_verified": "yes"
+    },
+    {
+      "id": "50",
+      "natural_language": "What is the billing breakdown by store for <MM> <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.ocr_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m')='<MM>' GROUP BY i.ocr_code), ret AS (SELECT r.ocr_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m')='<MM>' GROUP BY r.ocr_code) SELECT CASE COALESCE(inv.ocr_code,ret.ocr_code) WHEN 'STR01' THEN 'Downtown Store' WHEN 'STR02' THEN 'Mall Store' WHEN 'STR03' THEN 'North Store' WHEN 'STR04' THEN 'Outlet' END AS store, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.ocr_code=ret.ocr_code ORDER BY net_billing DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "51",
+      "natural_language": "How many units of <ITEM_NAME> were sold per store in <MM> <YYYY>?",
+      "sql": "WITH inv AS (SELECT i.ocr_code, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m')='<MM>' GROUP BY i.ocr_code), ret AS (SELECT r.ocr_code, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m')='<MM>' GROUP BY r.ocr_code) SELECT CASE COALESCE(inv.ocr_code,ret.ocr_code) WHEN 'STR01' THEN 'Downtown Store' WHEN 'STR02' THEN 'Mall Store' WHEN 'STR03' THEN 'North Store' WHEN 'STR04' THEN 'Outlet' END AS store, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.ocr_code=ret.ocr_code ORDER BY net_qty_sold DESC",
+      "is_verified": "yes"
+    },
+    {
+      "id": "52",
+      "natural_language": "What is the average selling price of <ITEM_NAME> in <YYYY>?",
+      "sql": "SELECT ROUND(((SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>') - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>')) / NULLIF((SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>') - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>'),0),2) AS avg_selling_price",
+      "is_verified": "yes"
+    },
+    {
+      "id": "53",
+      "natural_language": "What are the top 10 items by quantity sold this year?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.quantity) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')=CAST(date_part('year',current_date) AS VARCHAR) GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.quantity) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')=CAST(date_part('year',current_date) AS VARCHAR) GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_qty_sold FROM inv FULL OUTER JOIN ret ON inv.item_code=ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code,ret.item_code)=o.item_code ORDER BY net_qty_sold DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "54",
+      "natural_language": "What are the top 10 items by billing this year?",
+      "sql": "WITH inv AS (SELECT i.item_code, SUM(i.line_total) AS total FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')=CAST(date_part('year',current_date) AS VARCHAR) GROUP BY i.item_code), ret AS (SELECT r.item_code, SUM(r.line_total) AS total FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')=CAST(date_part('year',current_date) AS VARCHAR) GROUP BY r.item_code) SELECT o.item_name, ROUND(COALESCE(inv.total,0)-COALESCE(ret.total,0),2) AS net_billing FROM inv FULL OUTER JOIN ret ON inv.item_code=ret.item_code JOIN retail2.master_articles_oitm o ON COALESCE(inv.item_code,ret.item_code)=o.item_code ORDER BY net_billing DESC LIMIT 10",
+      "is_verified": "yes"
+    },
+    {
+      "id": "57",
+      "natural_language": "How many units of <ITEM_NAME> were sold in spring <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('03','04','05')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('03','04','05')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "58",
+      "natural_language": "What is the total number of units sold in spring <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('03','04','05')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('03','04','05')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "59",
+      "natural_language": "What is the total billing for <ITEM_NAME> in spring <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('03','04','05')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('03','04','05')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "60",
+      "natural_language": "What is the total retail billing for spring <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('03','04','05')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('03','04','05')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "61",
+      "natural_language": "How many units of <ITEM_NAME> were sold in summer <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('06','07','08')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('06','07','08')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "62",
+      "natural_language": "What is the total number of units sold in summer <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('06','07','08')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('06','07','08')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "63",
+      "natural_language": "What is the total billing for <ITEM_NAME> in summer <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('06','07','08')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('06','07','08')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "64",
+      "natural_language": "What is the total retail billing for summer <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('06','07','08')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('06','07','08')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "65",
+      "natural_language": "How many units of <ITEM_NAME> were sold in autumn <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('09','10','11')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('09','10','11')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "66",
+      "natural_language": "What is the total number of units sold in autumn <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('09','10','11')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('09','10','11')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "67",
+      "natural_language": "What is the total billing for <ITEM_NAME> in autumn <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('09','10','11')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('09','10','11')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "68",
+      "natural_language": "What is the total retail billing for autumn <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('09','10','11')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('09','10','11')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "69",
+      "natural_language": "How many units of <ITEM_NAME> were sold in winter <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('01','02','12')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('01','02','12')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "70",
+      "natural_language": "What is the total number of units sold in winter <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.quantity),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('01','02','12')) - (SELECT COALESCE(SUM(r.quantity),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('01','02','12')) AS net_qty_sold",
+      "is_verified": "yes"
+    },
+    {
+      "id": "71",
+      "natural_language": "What is the total billing for <ITEM_NAME> in winter <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('01','02','12')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name IN ('<ITEM_NAME>') AND o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('01','02','12')) AS net_billing",
+      "is_verified": "yes"
+    },
+    {
+      "id": "72",
+      "natural_language": "What is the total retail billing for winter <YYYY>?",
+      "sql": "SELECT (SELECT COALESCE(SUM(i.line_total),0) FROM retail2.inventory_stock_inv1 i JOIN retail2.master_articles_oitm o ON i.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND i.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(i.doc_date, '%Y')='<YYYY>' AND STRFTIME(i.doc_date, '%m') IN ('01','02','12')) - (SELECT COALESCE(SUM(r.line_total),0) FROM retail2.sales_credit_notes_rin1 r JOIN retail2.master_articles_oitm o ON r.item_code=o.item_code WHERE o.item_name NOT LIKE '%(DO NOT USE)%' AND r.ocr_code IN ('STR01','STR02','STR03','STR04') AND STRFTIME(r.doc_date, '%Y')='<YYYY>' AND STRFTIME(r.doc_date, '%m') IN ('01','02','12')) AS net_billing",
+      "is_verified": "yes"
+    }
+  ]
+}

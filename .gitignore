@@ -1,0 +1,62 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Data
+data/parquets/
+data.zip
+data.zip:Zone.Identifier
+
+# Dependencies
+pixi.lock
+
+# IDE
+.vscode/
+.idea/
+
+# Build / packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pixi environment
+.pixi/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checkers / linters
+.mypy_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# DuckDB
+*.duckdb
+*.db
+
+# QA bug reports are tracked, but ignore OS artefacts inside bugs/
+docs/bugs/.DS_Store
+.envretail-analytics.zip
+*.py.bak
+-e 
+# Development artefacts
+*copy.py
+*copy*.ipynb
